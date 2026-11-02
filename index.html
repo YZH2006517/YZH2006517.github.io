@@ -1,7 +1,183 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="NANATATA 的个人网站。记录 AI 应用、软硬件交互与项目实践，欢迎工作机会、科研交流和合作。"><title>NANATATA · 个人网站</title><link rel="stylesheet" href="styles.css"><script src="motion.js" defer></script></head><body>
-<a class="skip" href="#main">跳到正文</a><header class="site-header"><a class="wordmark" href="index.html">NANATATA<span>·</span></a><nav aria-label="主导航"><a href="#about">关于 <small>About</small></a><details class="work-menu"><summary>作品 <small>Work</small></summary><div class="submenu"><a href="#work">作品概览 ↓</a><a href="work/ai-live-assistant.html">AI 直播助手 ↗</a></div></details><a href="#practice">方法 <small>Practice</small></a><a href="#contact">联系 <small>Contact</small></a></nav></header>
-<main id="main"><section class="personal-hero" id="about"><div class="hero-meta"><span class="eyebrow">PERSONAL WEBSITE / 个人网站</span><span class="availability"><i></i> 欢迎交流与合作</span></div><div class="intro-grid"><div><p class="name-label">你好，我是 NANATATA。</p><h1>把想法，<br>做成能用的东西。</h1></div><div class="intro-aside"><span class="mini-cross">＋</span><p>我关注 AI 应用、模型实验与软硬件交互，喜欢把技术放进具体场景，做出可以体验的作品。</p><p>这里记录我的项目、实现过程和思考。欢迎聊工作机会、科研问题，或一起做点有意思的事。</p><a class="underlined" href="https://github.com/YZH2006517" target="_blank" rel="noopener noreferrer">GitHub / YZH2006517 <span>↗</span></a></div></div><div class="interest-line"><span>AI APPLICATIONS</span><span>HUMAN–AI INTERACTION</span><span>BUILD & EXPERIMENT</span><a href="#work">往下看作品 ↓</a></div></section>
-<section class="editorial-section" id="work"><div class="section-marker"><span>01</span> 作品 <small>Work</small></div><div class="section-body"><div class="section-intro"><h2>从具体的问题开始。</h2><p>先呈现一个正在做的项目，展开它的使用场景、技术架构和实现过程。</p></div><a class="project-row" href="work/ai-live-assistant.html"><span class="row-number">01</span><div class="project-title"><h3>AI 直播助手</h3><span>AI 应用 · Windows 桌面软件</span></div><p>让 AI 回应弹幕、组合展示内容，配合讲解控制画面；也能切换唠嗑模式，主持互动小游戏。</p><span class="row-arrow">↗</span></a><a class="project-feature" href="work/ai-live-assistant.html" aria-label="查看 AI 直播助手项目案例"><div class="feature-copy"><span class="eyebrow">FEATURED PROJECT / 项目案例</span><h3>从一条弹幕，<br>到一场互动。</h3><p>理解问题、组织内容，再让声音与画面一起回应。</p><span class="underlined">走进项目 <b>↗</b></span></div><div class="mini-diagram" aria-hidden="true"><div class="diagram-comment"><span>观众</span>有什么赛车项目？</div><div class="diagram-connector">↓</div><div class="diagram-brain"><i>✳</i><div><b>AI 直播助手</b><small>理解 · 组织 · 执行</small></div></div><div class="diagram-split"><span>↙</span><span>↘</span></div><div class="diagram-outputs"><span>◷ 语音讲解</span><span>▦ 组合展示</span></div><div class="diagram-caption">流程概念图 / 网页绘制</div></div></a></div></section>
-<section class="editorial-section" id="practice"><div class="section-marker"><span>02</span> 方法 <small>Practice</small></div><div class="section-body"><div class="section-intro"><h2>把过程也讲清楚。</h2><p>我希望作品不只留下一个结果，也能说明它为什么这样实现。</p></div><div class="practice-grid"><article><span class="step-number">01 / 问题</span><h3>从场景出发</h3><p>先明确谁在使用、遇到了什么问题，再决定技术应该承担哪一部分。</p></article><article><span class="step-number">02 / 实现</span><h3>让链路跑起来</h3><p>把模型、交互和业务规则连接起来，关注输入如何变成实际动作。</p></article><article><span class="step-number">03 / 验证</span><h3>保留判断与控制</h3><p>说明能力边界，检查异常情况，让自动化也保留人工介入的空间。</p></article></div></div></section>
-<section class="editorial-section contact-section" id="contact"><div class="section-marker"><span>03</span> 联系 <small>Contact</small></div><div class="section-body"><span class="eyebrow">LET'S CONNECT</span><h2>聊聊下一件<br>值得做的事。</h2><p>工作机会、科研交流、开源协作，或一个还没成形的想法。</p><a class="contact-link email-link" href="mailto:zhenhao897@gmail.com">zhenhao897@gmail.com <span>↗</span></a><a class="contact-link github-contact" href="https://github.com/YZH2006517" target="_blank" rel="noopener noreferrer">github.com/YZH2006517 <span>↗</span></a></div></section></main><footer class="site-footer"><span>© 2026 NANATATA</span><span>持续实践，持续记录。</span><a href="#main">回到页首 ↑</a></footer></body></html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NANATATA — 把想法，做成能用的东西</title>
+<meta name="description" content="NANATATA 的个人网站。AI 应用、人机交互与工程落地：AI 虚拟主播、Photo All Studio。">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="bar">
+  <a class="mark" href="#top">NANATATA<span>.</span></a>
+  <nav class="bar-nav">
+    <a href="#streamer">虚拟主播</a>
+    <a href="#photo">观片台</a>
+    <a href="#focus">方向</a>
+    <a href="#contact">联系</a>
+  </nav>
+  <span class="bar-progress" id="progress"></span>
+</header>
+
+<main id="main">
+
+<section class="hero" id="top">
+  <p class="eyebrow reveal">AI APPLICATIONS · INTERACTION · ENGINEERING</p>
+  <h1 class="hero-title">
+    <span class="line"><span>把想法，</span></span>
+    <span class="line"><span>做成能用的东西。</span></span>
+  </h1>
+  <div class="hero-foot">
+    <p class="reveal" data-delay="1">
+      关注 AI 应用、人机交互与工程落地。两个 Windows 桌面软件都能下载到 exe，
+      不是演示 demo。下面两块都可以直接上手玩。
+    </p>
+    <a class="pill reveal" data-delay="2" href="https://github.com/YZH2006517" target="_blank" rel="noreferrer">GitHub<i></i></a>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"><span></span></div>
+</section>
+
+<section class="work" id="streamer">
+  <div class="work-head">
+    <p class="eyebrow reveal">PROJECT 01 · WINDOWS DESKTOP APP</p>
+    <h2 class="reveal" data-delay="1">AI 虚拟主播</h2>
+    <p class="lede reveal" data-delay="2">一个 Live2D 主播看着抖音弹幕陪观众聊天，还能跟着音乐跳舞、主持弹幕小游戏。下载一个 exe 就能用，填自己的大模型 API Key。</p>
+  </div>
+
+  <div class="stage-shell reveal" data-delay="3">
+    <div class="stage-bar">
+      <span class="stage-live"><i></i>LIVE</span>
+      <div class="segmented" id="modes" role="tablist" aria-label="模式">
+        <button type="button" role="tab" aria-selected="true" data-mode="chat">唠嗑模式</button>
+        <button type="button" role="tab" aria-selected="false" data-mode="game">弹幕小游戏</button>
+      </div>
+      <span class="stage-note">网页演示 · 非真实模型调用</span>
+    </div>
+
+    <div class="stage" id="stage">
+      <div class="danmaku" id="danmaku" aria-hidden="true"></div>
+      <div class="avatar" id="avatar">
+        <div class="av-hair"></div>
+        <div class="av-head">
+          <i class="av-eye l"></i><i class="av-eye r"></i>
+          <i class="av-mouth" id="mouth"></i>
+        </div>
+        <div class="av-body"></div>
+      </div>
+      <div class="bubble" id="bubble" hidden>
+        <p id="bubbleText"></p>
+        <span class="voice" id="voice"><i></i><i></i><i></i><i></i><i></i></span>
+      </div>
+      <div class="quiz" id="quiz" hidden>
+        <p class="quiz-q" id="quizQ"></p>
+        <div class="quiz-opts" id="quizOpts"></div>
+        <div class="board" id="board"></div>
+      </div>
+    </div>
+
+    <div class="stage-pipe" id="pipe">
+      <span data-step="chat">弹幕</span><em>→</em>
+      <span data-step="llm">大模型</span><em>→</em>
+      <span data-step="tts">语音+动作</span><em>→</em>
+      <span data-step="obs">直播画面</span>
+    </div>
+
+    <form class="composer" id="composer">
+      <input id="say" maxlength="40" placeholder="以观众身份发一条弹幕，回车发送…" aria-label="发送弹幕">
+      <button type="submit">发送</button>
+      <button type="button" id="dance">让她跳舞</button>
+    </form>
+  </div>
+
+  <div class="facts">
+    <article class="reveal"><h3>读弹幕回答</h3><p>读直播间网页留言并排队，留言多时合并回答，支持屏蔽词。</p></article>
+    <article class="reveal" data-delay="1"><h3>人设与形象</h3><p>性格、声音、场景一键换；可导入自己的 Cubism 3 模型（zip）。</p></article>
+    <article class="reveal" data-delay="2"><h3>弹幕小游戏</h3><p>大模型现场出题，程序判题计分，积分榜与排行榜大屏。</p></article>
+    <article class="reveal" data-delay="3"><h3>成本可见</h3><p>本地账本记录当天 token 花费与礼物收入。API Key 用 DPAPI 加密存本机。</p></article>
+  </div>
+
+  <p class="links reveal">
+    <a href="https://github.com/YZH2006517/ai-virtual-streamer/releases" target="_blank" rel="noreferrer">下载 Releases<i></i></a>
+    <a href="https://github.com/YZH2006517/ai-virtual-streamer" target="_blank" rel="noreferrer">源码<i></i></a>
+    <span class="tech">Python · Live2D Cubism · Edge TTS · WebView2 · MIT</span>
+  </p>
+</section>
+
+<section class="work" id="photo">
+  <div class="work-head">
+    <p class="eyebrow reveal">PROJECT 02 · WINDOWS DESKTOP APP</p>
+    <h2 class="reveal" data-delay="1">Photo All Studio</h2>
+    <p class="lede reveal" data-delay="2">一张可以开灯、摆片、放大细节的电子观片台，也是一套从选片到出片的本地工作台。原片只读，处理和识图都在本机完成。</p>
+  </div>
+
+  <div class="table-shell reveal" data-delay="3">
+    <div class="table-bar">
+      <button type="button" id="lampBtn" class="ghost is-on" aria-pressed="true">背光 <kbd>L</kbd></button>
+      <div class="luts" id="luts" role="group" aria-label="胶片风格">
+        <button type="button" class="is-on" data-lut="none">原片</button>
+        <button type="button" data-lut="portra">Portra</button>
+        <button type="button" data-lut="velvia">Velvia</button>
+        <button type="button" data-lut="trix">Tri-X</button>
+        <button type="button" data-lut="cine">Cine</button>
+      </div>
+      <span class="stage-note">拖动胶卷 · 拖动放大镜</span>
+    </div>
+
+    <div class="lighttable" id="lighttable">
+      <div class="film" id="film"></div>
+      <div class="loupe" id="loupe">
+        <div class="loupe-inner" id="loupeInner"><div class="film" id="filmMag"></div></div>
+        <span class="loupe-ring"></span>
+      </div>
+      <span class="zoom-tag" id="zoomTag">2.4×</span>
+    </div>
+
+    <div class="table-foot">
+      <label>放大倍率 <input type="range" id="zoom" min="1.6" max="4" step="0.1" value="2.4"></label>
+      <span class="keys"><kbd>G</kbd> 台面 <kbd>E</kbd> 单张 <kbd>C</kbd> 胶卷 <kbd>V</kbd> 放大镜 <kbd>L</kbd> 背光</span>
+    </div>
+  </div>
+
+  <div class="facts">
+    <article class="reveal"><h3>折射放大镜</h3><p>倍率与镜片尺寸独立调节，镜外保留整张台面。</p></article>
+    <article class="reveal" data-delay="1"><h3>选片</h3><p>颜色、冷暖、内容、风格等条件联动筛选，爱心选片与持久撤销。</p></article>
+    <article class="reveal" data-delay="2"><h3>126 款开放 LUT</h3><p>另有 17 款创意风格与 16 款 Spektrafilm 色彩，搜索分组与真实预览。</p></article>
+    <article class="reveal" data-delay="3"><h3>RAW 显影与导出</h3><p>RawTherapee 显影，float32 非破坏配方，16-bit PNG / TIFF 导出。</p></article>
+  </div>
+
+  <p class="links reveal">
+    <a href="https://github.com/YZH2006517/Photo-All/releases" target="_blank" rel="noreferrer">下载 Releases<i></i></a>
+    <a href="https://github.com/YZH2006517/Photo-All" target="_blank" rel="noreferrer">源码<i></i></a>
+    <span class="tech">Tauri · React · Python · RawTherapee · CLIP ONNX · GPL-3.0</span>
+  </p>
+</section>
+
+<section class="focus" id="focus">
+  <h2 class="reveal">关注方向</h2>
+  <ol class="focus-list">
+    <li class="reveal"><span>01</span><h3>AI 应用</h3><p>让模型的理解与生成能力进入具体场景，而不是停在接口调用。</p></li>
+    <li class="reveal" data-delay="1"><span>02</span><h3>人机交互</h3><p>把语言、语音、画面和实际操作连起来。</p></li>
+    <li class="reveal" data-delay="2"><span>03</span><h3>工程落地</h3><p>完整链路、状态管理、异常处理，以及能交到别人手上的安装包。</p></li>
+  </ol>
+</section>
+
+<section class="contact" id="contact">
+  <p class="eyebrow reveal">CONTACT</p>
+  <h2 class="reveal" data-delay="1">欢迎工作机会、科研交流与开源协作。</h2>
+  <a class="big-link reveal" data-delay="2" href="mailto:zhenhao897@gmail.com">zhenhao897@gmail.com<i></i></a>
+  <a class="big-link reveal" data-delay="3" href="https://github.com/YZH2006517" target="_blank" rel="noreferrer">github.com/YZH2006517<i></i></a>
+</section>
+
+</main>
+
+<footer class="foot">
+  <span>© <span id="year"></span> NANATATA</span>
+  <span>原生 HTML / CSS / JavaScript · GitHub Pages</span>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
