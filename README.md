@@ -1,17 +1,13 @@
-# NANATATA · 个人网站
+# NANATATA · Personal space
 
-个人介绍与项目作品。<https://yzh2006517.github.io/>
+[个人网站](https://yzh2006517.github.io/) · [GitHub 主页](https://github.com/YZH2006517)
 
-两个 Windows 桌面软件各配了一块可以直接上手的网页演示：
+个人介绍、关注方向与三个简短作品入口：Photo All Studio、Photo All Android（开发中）、AI 直播助手。项目行可展开查看简要流程、源码与发行页；直播助手保留早期演示视频。
 
-- **AI 虚拟主播** — 发一条弹幕，看它走完「弹幕 → 大模型 → 语音+动作 → 直播画面」，
-  也可以切到弹幕小游戏模式答题计分。
-- **Photo All Studio** — 拖动胶卷和折射放大镜，切换背光与胶片风格。
+原生 HTML / CSS / JavaScript，无构建步骤。支持中英文、浅色/深色、移动布局、系统减少动效偏好。禁用 JavaScript 时内容、项目折叠、链接和视频仍可用。
 
-演示只在网页里模拟，不连真实模型。软件本体见
-[ai-virtual-streamer](https://github.com/YZH2006517/ai-virtual-streamer) 与
-[Photo-All](https://github.com/YZH2006517/Photo-All)。
+文件：`index.html`、`main.css`、`app.js`，资源位于 `assets/`。GitHub Pages 从 main 分支根目录发布。
+
+项目资料以各仓库 README 为准。Photo All 的光谱模拟基于 Spektrafilm / vkdt 等开源工作。
 
 联系：zhenhao897@gmail.com
-
-原生 HTML、CSS、JavaScript，无构建步骤，由 GitHub Pages 托管。
