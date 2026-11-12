@@ -1,20 +1,514 @@
-@charset "UTF-8";
-:root{color-scheme:light;--paper:#f5f3ee;--ink:#222422;--muted:#6f716c;--line:#d6d7d0;--accent:#c4492b;--accent-bright:#e56340;--surface:#edeae3;--header:rgba(245,243,238,.94);--contact:#e9e4da;font-family:"Segoe UI","Microsoft YaHei",Arial,sans-serif}
-:root[data-theme=dark]{color-scheme:dark;--paper:#191b1a;--ink:#f0eee8;--muted:#abaea6;--line:#3b3e38;--accent:#f58a67;--accent-bright:#f58a67;--surface:#252824;--header:rgba(25,27,26,.94);--contact:#292b26}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark;--paper:#191b1a;--ink:#f0eee8;--muted:#abaea6;--line:#3b3e38;--accent:#f58a67;--accent-bright:#f58a67;--surface:#252824;--header:rgba(25,27,26,.94);--contact:#292b26}}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none;text-underline-offset:5px}button,summary{-webkit-tap-highlight-color:transparent}button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}a,button,summary{touch-action:manipulation}a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:6px}::selection{background:#e8b49d;color:#1e241f}p,h1,h2,h3,h4,figure{margin:0}button[hidden]{display:none}svg{display:block}a:hover{color:var(--accent)}.skip{position:fixed;left:20px;top:-70px;padding:14px 20px;background:var(--ink);color:var(--paper);z-index:100}.skip:focus{top:12px}.section-shell{width:min(1280px,calc(100% - 112px));margin-inline:auto}
-.site-header{height:90px;width:100%;padding:0 56px;display:flex;align-items:center;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;background:var(--header);backdrop-filter:blur(16px)}.brand{font-weight:800;letter-spacing:-1px;font-size:23px}.brand span{color:var(--accent-bright)}.site-header nav{display:flex;gap:34px;margin-left:auto;font-size:14px}.site-header nav a{position:relative;padding:15px 0}.site-header nav a::after{content:"";position:absolute;bottom:7px;left:0;right:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .25s}.site-header nav a:hover::after{transform:scaleX(1)}.header-tools{display:flex;gap:16px;align-items:center;margin-left:40px;padding-left:28px;border-left:1px solid var(--line)}.text-button{font-size:12px;font-weight:600;min-width:30px;min-height:40px}.theme-button{display:grid;place-items:center;width:32px;height:40px}
-.eyebrow,.art-label,.hero-bottom,.project-platform,.project-stack,.project-number,.index,.work-foot,.site-footer,.interest-notes b{font-family:"SFMono-Regular",Consolas,"Microsoft YaHei",monospace}.eyebrow{font-size:11px;letter-spacing:1.8px;line-height:1.6}.hero{padding-top:39px}.hero-topline{display:flex;align-items:center;justify-content:space-between}.availability{display:flex;gap:9px;align-items:center;font-size:12px;color:var(--muted)}.availability i{width:6px;height:6px;background:var(--accent-bright);border-radius:50%;box-shadow:0 0 0 4px color-mix(in srgb,var(--accent-bright) 10%,transparent)}.hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:44px;align-items:center;padding:64px 0 72px}.hello{font-size:16px;margin-bottom:24px}.hero h1{font-size:clamp(48px,5.2vw,76px);line-height:1.25;letter-spacing:-3px;font-weight:600}.hero h1 em{font-style:normal;color:var(--accent)}.hero-description{font-size:15px;line-height:1.9;color:var(--muted);margin-top:26px;max-width:440px}.hero-actions{display:flex;align-items:center;gap:28px;margin-top:30px;font-size:13px}.solid-link{display:flex;gap:36px;align-items:center;background:var(--ink);color:var(--paper);padding:15px 20px;transition:background .2s,transform .2s}.solid-link:hover{color:var(--paper);background:var(--accent);transform:translateY(-2px)}.quiet-link{display:flex;gap:14px;align-items:center}.hero-art{position:relative;align-self:stretch;display:flex;flex-direction:column;justify-content:center;min-width:0}.art-label{position:absolute;top:0;left:0;font-size:10px;letter-spacing:1.5px;color:var(--muted)}.optical-art{width:100%;overflow:visible;max-height:410px}.orbit-guide{stroke:var(--line);fill:none;stroke-width:.8}.orbit-guide>circle{stroke-dasharray:2 6}.orb-lines{fill:none;stroke:var(--ink);stroke-width:1.05;transform-origin:260px 215px;animation:optical-drift 16s ease-in-out infinite alternate}.orb-outline{fill:none;stroke:var(--ink);stroke-width:.8}.orbit-dot{fill:var(--accent-bright);transform-origin:260px 215px;animation:orbit 28s linear infinite}.small-dot{fill:var(--muted)}.hero-art figcaption{font-size:11px;color:var(--muted);display:flex;justify-content:space-between;margin-top:8px;padding-top:14px;border-top:1px solid var(--line)}.hero-art figcaption>span:last-child{font-size:20px}.hero-bottom{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;display:flex;gap:24px;align-items:center;justify-content:space-between;font-size:10px;letter-spacing:1px;color:var(--muted)}.hero-bottom a{font-size:22px;color:var(--ink);line-height:1}
-.about{padding:90px 0;display:grid;grid-template-columns:1fr 2.5fr;gap:40px}.section-label{display:flex;gap:18px;align-items:baseline;font-size:13px}.section-label h2,.section-label>span:last-child{font-size:14px;font-weight:500}.index{font-size:11px;color:var(--accent);white-space:nowrap}.statement{font-size:clamp(25px,3vw,37px);line-height:1.6;letter-spacing:-.8px}.about-columns{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:25px;color:var(--muted);font-size:14px;line-height:1.95}.interest-notes{display:flex;flex-wrap:wrap;gap:20px 26px;margin-top:32px;padding-top:22px;border-top:1px solid var(--line);font-size:12px}.interest-notes>span{display:flex;gap:10px}.interest-notes b{font-size:10px;color:var(--accent);font-weight:400}.works{padding:40px 0 88px}.work-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}.work-heading>p{font-size:12px;color:var(--muted)}.project-list{border-top:1px solid var(--ink)}.project{border-bottom:1px solid var(--line);scroll-margin-top:110px}.project>summary{display:grid;grid-template-columns:28px 180px minmax(0,1fr) 36px;align-items:center;gap:30px;list-style:none;cursor:pointer;padding:25px 0}.project>summary::-webkit-details-marker{display:none}.project-number{font-size:11px;color:var(--muted);align-self:start;padding-top:5px}.project-visual{height:126px;overflow:hidden;position:relative;isolation:isolate;transition:transform .4s}.project>summary:hover .project-visual{transform:translateY(-3px)}.project-visual small{position:absolute;bottom:9px;left:11px;z-index:5;font-family:Consolas,monospace;font-size:7px;letter-spacing:1px}
-.visual-desktop{background:#deddd2;color:#5a5c51}.film-strip{height:61px;background:#343c34;position:absolute;top:27px;left:-12px;right:-12px;display:flex;gap:7px;padding:9px;transform:rotate(-13deg);border-block:3px dashed #8e9584}.film-strip i{display:block;flex:1;background:linear-gradient(145deg,#c5c8ac 40%,#869b80 40%,#566c58 68%,#394c40 68%)}.film-strip i:nth-child(2){background:linear-gradient(25deg,#665841 43%,#bb9969 43%,#dbc79e 70%)}.film-strip i:nth-child(3){background:linear-gradient(160deg,#c0c6cc 40%,#6c7b83 40%,#3c4c57 70%)}.loupe{position:absolute;width:57px;height:57px;top:29px;left:93px;border:5px solid #e4e5d8;border-radius:50%;box-shadow:0 3px 12px #2225,inset 0 0 0 2px #4c5648;background:#e7efc52b;backdrop-filter:brightness(1.25)}.visual-android{background:#dc6949;color:#542b22}.camera-phone{position:absolute;left:71px;top:6px;width:54px;height:102px;background:#292a27;border-radius:9px;transform:rotate(13deg);padding:6px;box-shadow:7px 9px 0 #8b3f2b44}.camera-view{height:66px;border-radius:4px;background:linear-gradient(#d2bd97 53%,#7e8060 53%,#414c3c 82%);position:relative;overflow:hidden}.camera-view i{position:absolute;background:#ebd4ad;border-radius:100%;width:16px;height:16px;top:15px;left:18px}.camera-shutter{height:13px;width:13px;border:1px solid #dcd8cc;border-radius:50%;margin:6px auto}.spectral-line{position:absolute;top:64px;left:20px;width:22px;border-top:1px solid #713924;box-shadow:0 -8px #713924,0 8px #713924}.visual-streamer{background:#2b383a;color:#d4e1db}.voice-bars{position:absolute;top:34px;left:26px;display:flex;gap:5px;align-items:center;height:43px}.voice-bars i{height:20px;width:5px;background:#bad2bc;border-radius:4px}.voice-bars i:nth-child(2n){height:38px}.voice-bars i:nth-child(3n){height:28px}.chat-note{position:absolute;right:14px;top:35px;font-family:Consolas,monospace;font-size:9px;background:#eff2dd;color:#304239;padding:9px 8px;transform:rotate(-7deg);border-radius:4px;box-shadow:4px 4px #0002}
-.project-platform{font-size:9px;letter-spacing:1.4px;color:var(--muted)}.project-copy h3{font-size:26px;letter-spacing:-.7px;margin:7px 0 9px;font-weight:500}.project-copy h3 em{font-family:Georgia,serif;font-weight:400;color:var(--muted)}.project-copy p{font-size:13px;line-height:1.75;color:var(--muted);max-width:590px}.project-stack{display:block;font-size:10px;color:var(--muted);margin-top:11px}.project-expand{height:32px;width:32px;border:1px solid var(--line);border-radius:50%;position:relative;transition:background .2s,color .2s}.project-expand:before,.project-expand:after{content:"";position:absolute;top:15px;left:10px;width:10px;height:1px;background:currentColor;transition:transform .25s}.project-expand:after{transform:rotate(90deg)}.project[open] .project-expand:after{transform:rotate(0)}.project[open] .project-expand{background:var(--ink);color:var(--paper);border-color:var(--ink)}.project-detail{margin:0 0 30px 58px;padding:28px;background:var(--surface);display:grid;grid-template-columns:1fr 1fr;gap:38px}.project-detail h4{font-size:18px;font-weight:500;margin-bottom:14px}.project-detail p{font-size:12px;line-height:1.85;color:var(--muted)}.detail-links{display:flex;gap:12px 22px;flex-wrap:wrap;font-size:12px;margin-top:22px}.detail-links a{border-bottom:1px solid var(--line);padding-bottom:4px}.workflow{padding-left:28px;border-left:1px solid var(--line)}.workflow .eyebrow{font-size:9px;color:var(--muted)}.workflow ol{list-style:none;padding:0;display:flex;gap:10px;counter-reset:workflow;margin:18px 0}.workflow li{flex:1;font-size:11px;position:relative;border-top:1px solid var(--line);padding-top:10px}.workflow li:before{counter-increment:workflow;content:"0" counter(workflow);display:block;font-family:Consolas,monospace;font-size:10px;color:var(--accent);margin-bottom:8px}.workflow li:not(:last-child):after{content:"→";position:absolute;top:-9px;right:0;background:var(--surface);padding-left:5px;color:var(--accent)}.workflow>p{font-size:10px}.video-disclosure>summary{font-size:12px;cursor:pointer;padding:8px 0;color:var(--accent)}.video-disclosure video{width:100%;margin-top:10px;max-height:320px;background:#141414}.video-disclosure p{font-size:10px}.work-foot{display:flex;justify-content:space-between;gap:24px;font-size:10px;color:var(--muted);padding-top:20px;line-height:1.7}.work-foot a{color:var(--ink);white-space:nowrap}
-.contact{padding:42px;background:var(--contact);border-top:3px solid var(--accent-bright);margin-bottom:56px}.contact-body{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;margin-top:36px}.contact h2{font-size:clamp(32px,3.6vw,49px);font-weight:500;letter-spacing:-1.5px;line-height:1.35}.contact-body p{font-size:13px;line-height:1.8;color:var(--muted);margin-top:18px}.email-link{font-size:clamp(17px,1.9vw,25px);letter-spacing:-.5px;display:flex;align-items:center;justify-content:space-between;gap:15px;border-bottom:1px solid var(--ink);padding-bottom:15px}.contact-secondary{display:flex;gap:24px;font-size:12px;margin-top:16px}.contact-secondary button{padding:0}.contact-secondary button:hover{color:var(--accent)}#copy-status{font-size:11px;min-height:20px}.site-footer{max-width:1280px;width:calc(100% - 112px);margin:0 auto;padding:0 0 34px;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:10px;color:var(--muted)}.site-footer .brand{font-size:17px;color:var(--ink)}.site-footer>a:last-child{color:var(--ink)}
-@keyframes orbit{to{transform:rotate(360deg)}}@keyframes optical-drift{from{transform:rotate(-15deg) scaleX(.96)}to{transform:rotate(15deg) scaleX(1.04)}}
-html[lang=en] .hero h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(48px,5.7vw,82px);line-height:1.1;font-weight:400;letter-spacing:-3px}html[lang=en] .hero h1 em{font-style:italic}html[lang=en] .hero-description{max-width:420px}html[lang=en] .contact h2{font-family:Georgia,serif;font-weight:400;letter-spacing:-1px}
-@media(min-width:1500px){.site-header{padding-inline:max(56px,calc((100vw - 1280px)/2))}.hero-grid{padding-block:80px}.hero h1{font-size:78px}}
-@media(max-width:1050px){.section-shell,.site-footer{width:calc(100% - 64px)}.site-header{padding-inline:32px;height:78px}.hero-grid{gap:18px;padding:55px 0}.hero h1{font-size:52px;letter-spacing:-2px}.hero-art{max-height:390px}.hero-description{font-size:14px}.about{grid-template-columns:1fr 3fr;gap:26px;padding-block:65px}.project>summary{grid-template-columns:20px 140px minmax(0,1fr) 30px;gap:20px}.project-visual{height:110px}.project-copy h3{font-size:23px}.project-detail{margin-left:40px}.contact{padding:32px}.contact-body{gap:25px}.email-link{font-size:18px}.site-header nav{gap:25px}}
-@media(max-width:700px){html{scroll-padding-top:88px}.section-shell,.site-footer{width:calc(100% - 40px)}.site-header{height:72px;padding:0 20px;gap:12px}.brand{font-size:18px}.site-header nav{gap:17px;font-size:12px}.header-tools{margin-left:4px;padding-left:10px;gap:5px}.theme-button{width:24px}.text-button{font-size:10px;min-width:26px}.hero{padding-top:25px}.eyebrow{font-size:9px;letter-spacing:1.1px}.availability{font-size:10px}.hero-grid{grid-template-columns:1fr;gap:32px;padding:40px 0 28px}.hello{font-size:13px;margin-bottom:19px}.hero h1{font-size:clamp(39px,8.6vw,60px);line-height:1.3;letter-spacing:-2px}.hero-description{font-size:13px;margin-top:22px;max-width:none}.hero-actions{margin-top:23px;font-size:12px}.solid-link{padding:13px 17px;gap:28px}.hero-art{max-height:none;min-height:0;padding-top:12px;max-width:390px;width:100%;margin:auto}.optical-art{max-height:260px}.art-label{font-size:8px;top:4px}.hero-art figcaption{font-size:10px;margin-top:0}.hero-bottom{font-size:8px;letter-spacing:.5px;gap:10px;padding:17px 0}.hero-bottom>span:nth-child(2){display:none}.about{display:block;padding:52px 0 40px}.section-label{gap:14px}.about-body{margin-top:24px}.statement{font-size:26px;letter-spacing:-.7px}.about-columns{gap:18px;margin-top:20px;font-size:12px;line-height:1.9}.interest-notes{gap:12px;font-size:10px;justify-content:space-between;margin-top:22px}.interest-notes>span{gap:6px}.interest-notes b{font-size:9px}.works{padding:25px 0 45px}.work-heading{align-items:flex-start;gap:15px;margin-bottom:20px}.work-heading>p{font-size:10px;max-width:130px;line-height:1.6;text-align:right}.project>summary{grid-template-columns:76px minmax(0,1fr) 24px;gap:13px;padding:22px 0}.project-number{display:none}.project-visual{height:91px}.project-platform{font-size:7px;letter-spacing:.6px}.project-copy h3{font-size:18px;letter-spacing:-.5px;margin:6px 0}.project-copy p{font-size:11px;line-height:1.7}.project-stack{font-size:8px;margin-top:9px;line-height:1.5}.project-expand{width:24px;height:24px}.project-expand:before,.project-expand:after{top:11px;left:7px;width:8px}.project-visual small{display:none}.film-strip{top:25px;left:-38px;right:-40px;height:43px;padding:5px;gap:4px}.loupe{width:38px;height:38px;left:29px;top:23px;border-width:3px}.camera-phone{left:23px;top:12px;width:35px;height:67px;padding:4px;border-radius:6px}.camera-view{height:43px}.camera-view i{width:10px;height:10px;top:8px;left:10px}.camera-shutter{width:9px;height:9px;margin:4px auto}.spectral-line{width:10px;left:8px;top:40px}.voice-bars{left:8px;top:24px;gap:3px;height:33px}.voice-bars i{width:3px;height:13px}.voice-bars i:nth-child(2n){height:26px}.voice-bars i:nth-child(3n){height:19px}.chat-note{top:49px;right:3px;font-size:6px;padding:5px}.project-detail{margin:0 0 20px;padding:20px;grid-template-columns:1fr;gap:24px}.project-detail h4{font-size:16px}.project-detail p{font-size:12px}.workflow{padding-left:0;padding-top:19px;border-left:0;border-top:1px solid var(--line)}.workflow li{font-size:11px}.detail-links{font-size:11px;gap:18px}.work-foot{font-size:9px;gap:18px}.contact{padding:25px;margin-bottom:30px}.contact-body{grid-template-columns:1fr;gap:28px;margin-top:25px}.contact h2{font-size:37px}.contact-body p{font-size:12px}.email-link{font-size:19px;letter-spacing:-.5px}.contact-secondary{font-size:11px}.site-footer{font-size:8px;gap:12px;flex-wrap:wrap;padding-bottom:25px}.site-footer .brand{font-size:15px}html[lang=en] .hero h1{font-size:clamp(44px,10vw,62px);letter-spacing:-2px}html[lang=en] .project-copy h3{font-size:17px}}
-@media(max-width:380px){.site-header{padding-inline:14px;gap:8px}.site-header nav{gap:12px}.brand{font-size:16px}.header-tools{padding-left:6px}.section-shell,.site-footer{width:calc(100% - 32px)}.project>summary{grid-template-columns:60px minmax(0,1fr) 22px;gap:10px}.project-copy h3{font-size:16px}.contact{padding:20px}.email-link{font-size:17px}}
-@media(max-width:700px){.hero-topline{flex-wrap:wrap;gap:10px}.project-copy p{font-size:12px}.project-stack{font-size:9px}.project-platform{font-size:8px}}
-@media(max-width:380px){html{scroll-padding-top:108px}.site-header{height:auto;min-height:96px;flex-wrap:wrap;padding:8px 16px;gap:0 12px}.site-header nav{order:3;width:100%;justify-content:center;gap:35px}.site-header nav a{padding:8px 0}.header-tools{margin-left:auto}.about-columns{grid-template-columns:1fr;gap:14px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+/* ============================================================
+   NANATATA 个人网站 —— 样式
+   §1 色板与主题   §2 基础与像素字   §3 场景与颗粒   §4 开场
+   §5 桌面与窗口   §6 窗口里的东西   §7 说明图       §8 响应式与动效开关
+
+   整体是一张“桌面”：背后是 scene.js 画的蓝色低多边形城市，
+   前面漂着像素风的窗口。像素字只在整数倍字号（12 / 24 / 48）下才清楚，
+   所以全站只用这几档，说明图也按 1:1 渲染，不缩放。
+   ============================================================ */
+
+/* ───────── §1 色板与主题 ─────────
+   data-theme 由 <head> 里那段脚本在首帧前算好（读者选过就用选的，没选过跟系统），
+   所以这里只需要一套深色覆盖，不用再写一遍 prefers-color-scheme。 */
+:root {
+  --sky-1: #d6f1ff;
+  --sky-2: #f4fbff;
+  --ink: #0b2b7a;
+  --mute: #3d69ad;
+  --faint: #7298c8;
+  --bar: #79d3fa;
+  --bar-ink: #0b2b7a;
+  --edge: #79d3fa;
+  --glass: rgba(238, 250, 255, .9);
+  --cell: #f6fcff;
+  --cell-hi: #c4ebfd;
+  --rule: #86cff6;
+  --sep: #cbeefc;
+  --accent: #1f5fe0;
+  --chroma: #22c3ff;
+  --red: #e04a3f;
+  --shadow: #0b2b7a;
+
+  /* 观片台那张图 */
+  --film: #10235e;
+  --hole: #eefaff;
+  --lamp-a: #fdfeff;
+  --lamp-b: #cdeefd;
+  --fr-a: #a9dcf8;
+  --fr-b: #7cc1f3;
+  --fr-c: #c6e9fc;
+  --fr-m: #2f6fd8;
+  --fr-d: #13348f;
+  --fr-w: #ffffff;
+
+  --px: "Fusion Pixel 12px Proportional Simplified Chinese", "Silkscreen", ui-monospace, monospace;
+  --display: "Silkscreen", var(--px);
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --sky-1: #030a28;
+  --sky-2: #12297e;
+  --ink: #e2f6ff;
+  --mute: #9cccf2;
+  --faint: #6f9ad6;
+  --bar: #1f56cf;
+  --bar-ink: #e2f6ff;
+  --edge: #3d8fe8;
+  --glass: rgba(7, 20, 74, .88);
+  --cell: #0b1e62;
+  --cell-hi: #1d48b8;
+  --rule: #3577dc;
+  --sep: #17398f;
+  --accent: #66d2ff;
+  --chroma: #66d2ff;
+  --red: #ff6a5e;
+  --shadow: #01061f;
+
+  --film: #040a26;
+  --hole: #9fdcff;
+  --lamp-a: #3a72e6;
+  --lamp-b: #173c9f;
+  --fr-a: #2f63d8;
+  --fr-b: #2453c4;
+  --fr-c: #3d78e8;
+  --fr-m: #12318f;
+  --fr-d: #071a5a;
+  --fr-w: #cfefff;
+  color-scheme: dark;
+}
+
+/* ───────── §2 基础与像素字 ───────── */
+* { box-sizing: border-box; margin: 0; padding: 0 }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100% }
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: var(--px);
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--ink);
+  /* 没有 WebGL 时这层天空就是全部背景 */
+  background: linear-gradient(var(--sky-1), var(--sky-2) 70%) fixed;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+}
+
+a { color: inherit; text-decoration: none }
+ul { list-style: none }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer }
+svg { display: block }
+::selection { background: var(--chroma); color: #fff }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 2px }
+
+.skip { position: absolute; left: 12px; top: -60px; z-index: 30; padding: 4px 10px; background: var(--ink); color: var(--cell) }
+.skip:focus { top: 12px }
+
+/* ───────── §3 场景与颗粒 ───────── */
+#gl {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  /* 场景按 1 倍像素画，高分屏上由这里放大成硬边像素 */
+  image-rendering: pixelated;
+  opacity: 0;
+  transition: opacity .6s steps(4);
+}
+.gl-on #gl { opacity: 1 }
+
+/* 一层会抖的颗粒 + 四角压暗，让平涂的色块像印出来的 */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: .55;
+  mix-blend-mode: multiply;
+  background:
+    radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(11, 43, 122, .14)),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .3  0 0 0 0 .45  0 0 0 0 .8  0 0 0 2.4 -1.35'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  animation: grain .5s steps(3) infinite;
+}
+:root[data-theme="dark"] .grain { mix-blend-mode: screen; opacity: .3 }
+@keyframes grain {
+  0%, 100% { background-position: 0 0, 0 0 }
+  33%      { background-position: 0 0, -60px 40px }
+  66%      { background-position: 0 0, 50px -30px }
+}
+
+/* ───────── §4 开场 ───────── */
+.prefs { position: fixed; top: 12px; right: 12px; z-index: 20; display: flex; gap: 8px }
+
+/* 圆形小钮：语言、深浅色、关于我那排链接都是它 */
+.k {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--edge);
+  background: var(--glass);
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1;
+  transition: background-color .15s steps(2), color .15s steps(2), border-color .15s steps(2);
+}
+.k svg { width: 16px; height: 16px }
+.k:hover { background: var(--ink); border-color: var(--ink); color: var(--cell) }
+
+#theme .sun { display: none }
+:root[data-theme="dark"] #theme .sun { display: block }
+:root[data-theme="dark"] #theme .moon { display: none }
+
+.hero {
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  height: 100svh;
+  padding: 28px 32px;
+}
+
+.title {
+  display: inline-block;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 48px;
+  letter-spacing: 2px;
+  /* 上下两截硬切的渐变，像老游戏的标题字 */
+  background: linear-gradient(180deg, var(--chroma) 0 50%, var(--accent) 50% 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(3px 3px 0 var(--glass));
+  animation: typeIn 1.1s steps(8) .2s both;
+}
+@keyframes typeIn { from { clip-path: inset(0 100% 0 0) } to { clip-path: inset(0 -8px -8px 0) } }
+
+.tagline {
+  margin-top: 12px;
+  font-size: 24px;
+  line-height: 30px;
+  text-shadow: 2px 2px 0 var(--glass);
+  animation: fadeIn .6s steps(3) 1.2s both;
+}
+@keyframes fadeIn { from { opacity: 0 } }
+
+.cue {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  margin-left: -18px;
+  color: var(--ink);
+  animation: bob 1.2s steps(2) infinite;
+}
+.cue svg { width: 36px; height: 36px }
+@keyframes bob { 50% { transform: translateY(6px) } }
+
+/* ───────── §5 桌面与窗口 ─────────
+   12 栏网格，每扇窗自己说占哪几栏（--c）、离上一行多远（--mt）。
+   两扇窗左右放得下时网格会把它们排进同一行，右边那扇再用 --mt 往下错一截 ——
+   桌面上那种错落就是这么来的。 */
+#desk {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 24px;
+  align-items: start;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px 40vh;
+}
+
+.win {
+  position: relative;
+  grid-column: var(--c, 1 / span 6);
+  margin-top: var(--mt, 12vh);
+  scroll-margin-top: 64px;
+  border: 2px solid var(--edge);
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+.win:first-child { margin-top: 0 }
+.win.ov { box-shadow: 8px 8px 0 var(--shadow) }
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 3px 10px 3px;
+  background: var(--bar);
+  color: var(--bar-ink);
+}
+.bar h2 { flex: 1; min-width: 0; font-size: 12px; font-weight: 400; line-height: 18px }
+.bar .tag { flex: none; opacity: .75 }
+
+.body { padding: 12px 14px 14px }
+.body > * + * { margin-top: 12px }
+
+/* 窗口进场：先只露出标题栏，再一格一格往下展开 */
+.js .win { opacity: 0 }
+.js .win.is-in { animation: unroll .5s steps(6) forwards }
+@keyframes unroll {
+  from { opacity: 1; clip-path: inset(0 0 calc(100% - 26px) 0) }
+  to   { opacity: 1; clip-path: inset(0 -12px -12px 0) }
+}
+
+/* ───────── §6 窗口里的东西 ───────── */
+.who { font-size: 24px; line-height: 30px }
+.who span { margin-left: 6px; font-size: 12px; color: var(--mute) }
+.lead { font-size: 24px; line-height: 30px }
+.body p { max-width: 70ch }
+
+.keys { display: flex; gap: 8px }
+
+/* 列表行：作品目录、联系方式 */
+.list li + li { border-top: 2px solid var(--sep) }
+.row { display: flex; align-items: center; gap: 12px; padding: 8px 6px }
+.row:hover { background: var(--cell-hi) }
+.row-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px }
+.row-main b { font-size: 24px; font-weight: 400; line-height: 30px; overflow-wrap: anywhere }
+.row-main small { font-size: 12px; color: var(--mute) }
+.list.plain .row-main b { font-size: 12px; line-height: 18px }
+.meta { flex: none; color: var(--mute) }
+
+/* 缩略图固定用浅色板，像嵌在窗里的一块小屏 */
+.shot { flex: none; border: 2px solid var(--edge); background: #eefaff }
+.thumb { width: 64px; height: 64px }
+.thumb .ta { fill: #79d3fa }
+.thumb .tw { fill: #ffffff }
+.thumb .tm { fill: #3faef0 }
+.thumb .td { fill: #0b2b7a }
+
+.more { display: flex; justify-content: flex-end }
+.more a { display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px; border: 2px solid var(--edge); background: var(--cell) }
+.more a:hover { background: var(--ink); border-color: var(--ink); color: var(--cell) }
+.more svg { width: 14px; height: 14px }
+
+/* 事实条目：左边一个词，右边一句话 */
+.rows li { display: grid; grid-template-columns: 9em minmax(0, 1fr); gap: 2px 16px; padding: 6px 0; border-top: 2px solid var(--sep) }
+.rows b { font-weight: 400 }
+.rows span { color: var(--mute) }
+.rows.numbered li { grid-template-columns: 2.5em 9em minmax(0, 1fr) }
+.rows i { font-style: normal; color: var(--accent) }
+
+.acts { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; padding-top: 12px; border-top: 2px solid var(--sep) }
+.acts .meta { margin-left: auto }
+
+/* 按钮：带硬投影，按下去就把影子吃掉 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 2px solid var(--ink);
+  background: var(--bar);
+  color: var(--bar-ink);
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+.btn svg { width: 16px; height: 16px }
+.btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--shadow) }
+.btn:active { transform: translate(3px, 3px); box-shadow: none }
+
+.foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  padding: 8px 24px;
+  border-top: 2px solid var(--edge);
+  background: var(--glass);
+  color: var(--mute);
+}
+
+/* ───────── §7 说明图 ─────────
+   图都是内联 SVG，按 viewBox 的宽度 1:1 显示（像素字缩放就糊），窗口放不下就横向滑动。
+   节点的点亮时刻（--at）是按那颗数据点走到它身上的时间算出来的，
+   所以亮灯看起来是被数据推着走的，而不是各自乱闪。 */
+.fig { margin-left: -14px; margin-right: -14px; border-top: 2px solid var(--sep); border-bottom: 2px solid var(--sep); background: var(--cell) }
+.body > .fig:first-child { margin-top: -12px; border-top: 0 }
+.body > .fig:last-child { margin-bottom: -14px; border-bottom: 0 }
+.scroller { overflow-x: auto; padding: 14px }
+.hint { display: none; padding: 8px 14px 0; color: var(--faint) }
+.fig figcaption { padding: 10px 14px 12px; border-top: 2px solid var(--sep); color: var(--mute) }
+
+.diagram { width: 900px; max-width: none; height: auto; color: var(--ink); overflow: visible }
+.diagram text { font-size: 12px; fill: var(--ink) }
+
+.node rect { fill: var(--cell); stroke: var(--rule); stroke-width: 2 }
+.diagram .node .s { fill: var(--mute) }
+.node.is-key rect { stroke: var(--accent) }
+
+.node rect { animation: nodeLit 9s steps(3) var(--at, 0s) infinite }
+.node.is-key rect { animation-name: nodeLitKey }
+@keyframes nodeLit {
+  0%, 1%, 14%, 100% { fill: var(--cell); stroke: var(--rule) }
+  4%, 9%            { fill: var(--cell-hi); stroke: var(--accent) }
+}
+/* 重点节点的描边一直是强调色，所以只让底色闪 */
+@keyframes nodeLitKey {
+  0%, 1%, 14%, 100% { fill: var(--cell) }
+  4%, 9%            { fill: var(--cell-hi) }
+}
+/* 屏幕预览跟着那颗快的闪，不走 9 秒的大周期 */
+.node.is-live rect { animation: nodeLive 1.1s steps(2) infinite }
+@keyframes nodeLive {
+  0%, 62%, 100% { fill: var(--cell); stroke: var(--rule) }
+  86%, 97%      { fill: var(--cell-hi); stroke: var(--accent) }
+}
+
+.edge path { fill: none; stroke: var(--rule); stroke-width: 2 }
+.diagram .edge text { fill: var(--mute); text-anchor: middle }
+.ah { fill: var(--rule) }
+.ah-k { fill: var(--red) }
+
+.zone { fill: none; stroke: var(--rule); stroke-width: 2; stroke-dasharray: 4 4 }
+.diagram .zone-tag { fill: var(--mute) }
+
+/* 沿链路走的数据：8×8 的像素方块，用 transform 平移（各浏览器对 SVG 的 x / y 动画支持不齐）。
+   没动画的时候它们得藏起来，否则会停在左上角 */
+.pkt, .pkt-ro { opacity: 0 }
+.pkt { fill: var(--accent) }
+.pkt-ro { fill: var(--red) }
+
+.pkt-s1 { animation: pktS1 9s linear infinite }
+@keyframes pktS1 {
+  0%    { transform: translate(2px, 74px); opacity: 0 }
+  3%    { transform: translate(31px, 74px); opacity: 1 }
+  63.8% { transform: translate(616px, 74px) }
+  73.1% { transform: translate(705px, 74px) }
+  80%   { transform: translate(705px, 140px) }
+  97%   { transform: translate(869px, 140px); opacity: 1 }
+  100%  { transform: translate(898px, 140px); opacity: 0 }
+}
+/* 下面那条链路错开半个周期，两股数据看起来是各走各的 */
+.pkt-s2 { animation: pktS2 9s linear -4.5s infinite }
+@keyframes pktS2 {
+  0%    { transform: translate(2px, 206px); opacity: 0 }
+  3%    { transform: translate(31px, 206px); opacity: 1 }
+  73.1% { transform: translate(705px, 206px) }
+  80%   { transform: translate(705px, 140px) }
+  97%   { transform: translate(869px, 140px); opacity: 1 }
+  100%  { transform: translate(898px, 140px); opacity: 0 }
+}
+
+.pkt-p1 { animation: pktP1 9s linear infinite }
+@keyframes pktP1 {
+  0%   { transform: translate(2px, 44px); opacity: 0 }
+  3%   { transform: translate(29px, 44px); opacity: 1 }
+  97%  { transform: translate(869px, 44px); opacity: 1 }
+  100% { transform: translate(896px, 44px); opacity: 0 }
+}
+
+/* 这条红虚线是第一张 Photo All 图的全部结论：原片只读。
+   所以它只在“导出”那一小段时间里才真的有数据流过，其余时候是空的。 */
+.readonly path { fill: none; stroke: var(--red); stroke-width: 2; stroke-dasharray: 6 4 }
+.diagram .readonly text { fill: var(--red) }
+.pkt-ro { animation: pktRO 9s linear infinite }
+@keyframes pktRO {
+  0%, 70%     { transform: translate(75px, 74px); opacity: 0 }
+  72%         { transform: translate(75px, 74px); opacity: 1 }
+  73.5%       { transform: translate(75px, 136px); opacity: 1 }
+  74.5%       { transform: translate(91px, 152px); opacity: 1 }
+  91%         { transform: translate(807px, 152px); opacity: 1 }
+  92%         { transform: translate(823px, 136px); opacity: 1 }
+  93.5%       { transform: translate(823px, 78px); opacity: 1 }
+  94.5%, 100% { transform: translate(823px, 78px); opacity: 0 }
+}
+
+/* ── 观片台 ──
+   镜片里和台面上用的是同一条胶卷（<use> 引同一个 id），只是以镜心为原点放大，
+   所以镜心底下那一点永远对得上 —— 真放大镜就是这个样子。 */
+.lamp-a { stop-color: var(--lamp-a) }
+.lamp-b { stop-color: var(--lamp-b) }
+.pane { animation: lamp 7s steps(4) infinite }
+@keyframes lamp { 50% { opacity: .86 } }
+.pane-edge { fill: none; stroke: var(--rule); stroke-width: 2 }
+
+.film { fill: var(--film) }
+.hole { fill: var(--hole) }
+.fr-a { fill: var(--fr-a) }
+.fr-b { fill: var(--fr-b) }
+.fr-c { fill: var(--fr-c) }
+.fr-m { fill: var(--fr-m) }
+.fr-d { fill: var(--fr-d) }
+.fr-w { fill: var(--fr-w) }
+
+/* 三格一循环（450 = 3 × 150），平移完正好接回原样 */
+.strip-slide { animation: slide 39s linear infinite }
+@keyframes slide { to { transform: translateX(-450px) } }
+
+.lens-ring { fill: none; stroke: var(--ink); stroke-width: 4 }
+.glint { fill: #fff; opacity: .75 }
+
+.num rect { fill: var(--ink) }
+.diagram .num text { fill: var(--cell) }
+.legend rect { fill: none; stroke: var(--rule); stroke-width: 2 }
+.diagram .legend text { fill: var(--mute) }
+.diagram .legend .n { fill: var(--ink) }
+
+/* ── 精度 ── 两条出口的节奏不一样，这就是这张图的全部意思：
+   预览那颗一秒跑好几趟（每帧都要显示），导出那颗九秒才走一次。 */
+.gadget rect, .gadget path { fill: var(--cell); stroke: var(--ink); stroke-width: 2 }
+.gadget .screen { fill: var(--cell-hi); stroke: none }
+.diagram .gadget text { fill: var(--mute) }
+
+.pkt-q1 { animation: pktQ1 9s linear infinite }
+@keyframes pktQ1 {
+  0%        { transform: translate(2px, 118px); opacity: 0 }
+  2%        { transform: translate(24px, 118px); opacity: 1 }
+  12%       { transform: translate(190px, 118px); opacity: 1 }
+  14%, 100% { transform: translate(206px, 118px); opacity: 0 }
+}
+.pkt-q2 { animation: pktQ2 1.1s linear infinite }
+@keyframes pktQ2 {
+  0%   { transform: translate(462px, 118px); opacity: 0 }
+  6%   { transform: translate(472px, 118px); opacity: 1 }
+  17%  { transform: translate(490px, 118px) }
+  58%  { transform: translate(490px, 52px) }
+  95%  { transform: translate(552px, 52px); opacity: 1 }
+  100% { transform: translate(558px, 52px); opacity: 0 }
+}
+.pkt-q3 { animation: pktQ3 9s linear infinite }
+@keyframes pktQ3 {
+  0%, 68%     { transform: translate(462px, 118px); opacity: 0 }
+  70%         { transform: translate(468px, 118px); opacity: 1 }
+  72.5%       { transform: translate(490px, 118px); opacity: 1 }
+  79%         { transform: translate(490px, 184px); opacity: 1 }
+  87%         { transform: translate(552px, 184px); opacity: 1 }
+  88.5%, 100% { transform: translate(558px, 184px); opacity: 0 }
+}
+
+/* ───────── §8 响应式与动效开关 ───────── */
+@media (max-width: 1100px) {
+  .win.wide { grid-column: 1 / -1 }
+}
+
+@media (max-width: 860px) {
+  #desk { column-gap: 0; padding: 0 12px 30vh }
+  .win { grid-column: 1 / -1; margin-top: 28px }
+  .win:first-child { margin-top: 0 }
+  .win.ov { box-shadow: 6px 6px 0 var(--shadow) }
+  .hero { padding: 24px 16px }
+  .title { font-size: 32px; line-height: 32px }
+  .hint { display: block }
+  .rows li, .rows.numbered li { grid-template-columns: minmax(0, 1fr) }
+  .rows i { display: none }
+  .acts .meta { margin-left: 0; flex-basis: 100% }
+  .foot { padding: 8px 12px }
+}
+
+/* 系统里关掉了动效：窗口直接摊开，数据点和胶卷都不动，城市停在开场那个角度（见 scene.js） */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto }
+  *, *::before, *::after { animation: none !important; transition: none !important }
+  .js .win { opacity: 1 }
+}

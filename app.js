@@ -1,28 +1,108 @@
-'use strict';
-(() => {
- const root=document.documentElement;
- const languageButton=document.querySelector('#language'),themeButton=document.querySelector('#theme'),copyButton=document.querySelector('#copy-email'),status=document.querySelector('#copy-status');
- const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)'),systemDark=matchMedia('(prefers-color-scheme: dark)');
- const read=key=>{try{return localStorage.getItem(key);}catch{return null;}},save=(key,value)=>{try{localStorage.setItem(key,value);}catch{}};
- const nodes=[...document.querySelectorAll('[data-en]')].map(node=>({node,zh:node.innerHTML,en:node.dataset.en}));
- const labels=[...document.querySelectorAll('[data-en-label]')].map(node=>{const attr=node.tagName==='META'?'content':'aria-label';return{node,attr,zh:node.getAttribute(attr),en:node.dataset.enLabel};});
- const isEnglish=()=>root.lang==='en',isDark=()=>root.dataset.theme?root.dataset.theme==='dark':systemDark.matches;
- function updateThemeLabel(){themeButton.setAttribute('aria-label',isEnglish()?`Switch to ${isDark()?'light':'dark'} appearance`:`切换${isDark()?'浅色':'深色'}外观`);document.querySelector('meta[name="theme-color"]').content=isDark()?'#191b1a':'#f5f3ee';}
- function setLanguage(language){
-  const en=language==='en';
-  for(const item of nodes){if(en)item.node.textContent=item.en;else item.node.innerHTML=item.zh;}
-  for(const item of labels)item.node.setAttribute(item.attr,en?item.en:item.zh);
-  root.lang=en?'en':'zh-CN';languageButton.textContent=en?'中':'EN';languageButton.setAttribute('aria-label',en?'切换到中文':'Switch to English');
-  document.querySelector('.site-header .brand').setAttribute('aria-label',en?'NANATATA home':'NANATATA 首页');status.textContent='';updateThemeLabel();save('nanatata-lang',en?'en':'zh');
- }
- const savedTheme=read('nanatata-theme');if(savedTheme==='light'||savedTheme==='dark')root.dataset.theme=savedTheme;
- setLanguage(read('nanatata-lang')==='en'?'en':'zh');languageButton.hidden=themeButton.hidden=copyButton.hidden=false;document.querySelector('#year').textContent=String(new Date().getFullYear());
- languageButton.addEventListener('click',()=>setLanguage(isEnglish()?'zh':'en'));
- themeButton.addEventListener('click',()=>{root.dataset.theme=isDark()?'light':'dark';save('nanatata-theme',root.dataset.theme);updateThemeLabel();});systemDark.addEventListener('change',updateThemeLabel);
- copyButton.addEventListener('click',async()=>{try{if(!navigator.clipboard?.writeText)throw Error('unavailable');await navigator.clipboard.writeText('zhenhao897@gmail.com');status.textContent=isEnglish()?'Email copied.':'邮箱已复制。';}catch{status.textContent=isEnglish()?'Please select and copy the email above, or click it to open your mail app.':'请选中上方邮箱复制，或点击邮箱打开邮件应用。';}});
- function openLinkedProject(){const aliases={'#architecture':'#streamer','#runtime':'#streamer','#concept':'#streamer'};const hash=aliases[location.hash]||location.hash;const project=[...document.querySelectorAll('details.project')].find(item=>`#${item.id}`===hash);if(!project)return;project.open=true;if(location.hash==='#concept')project.querySelector('.video-disclosure').open=true;requestAnimationFrame(()=>project.scrollIntoView({behavior:'instant',block:'start'}));}
- openLinkedProject();addEventListener('hashchange',openLinkedProject);
- document.querySelectorAll('details').forEach(disclosure=>disclosure.addEventListener('toggle',()=>{if(!disclosure.open)disclosure.querySelectorAll('video').forEach(video=>video.pause());}));
- // Reading never depends on animations or IntersectionObserver support.
- if('IntersectionObserver'in window&&!reduceMotion.matches){const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(!entry.isIntersecting)continue;if(!reduceMotion.matches&&typeof entry.target.animate==='function')entry.target.animate([{opacity:.25,transform:'translateY(18px)'},{opacity:1,transform:'translateY(0)'}],{duration:600,easing:'cubic-bezier(.2,.7,.2,1)'});observer.unobserve(entry.target);}},{threshold:.12});document.querySelectorAll('.about-body,.work-heading,.project,.contact-body').forEach(el=>observer.observe(el));}
-})();
+/* ============================================================
+   NANATATA 个人网站 —— 交互
+   §1 工具   §2 深浅色   §3 中英切换   §4 窗口展开
+
+   背后的 3D 城市在 scene.js 里，这里只管页面本身。
+   两边靠一个 themechange 事件对齐颜色。
+   ============================================================ */
+
+const $ = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+const root = document.documentElement;
+
+// 隐私模式下 localStorage 可能读写都抛错，记不住就算了，页面照常
+const read = (k) => { try { return localStorage.getItem(k); } catch { return null; } };
+const keep = (k, v) => {
+  try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch { /* 同上 */ }
+};
+const zh = () => root.lang !== 'en';
+
+$('#year').textContent = new Date().getFullYear();
+
+/* ───────── §2 深浅色 ─────────
+   跟系统走，直到读者自己选；选了和系统一样的，就当没选过 ——
+   这样以后系统切换了，页面还会跟着走。首帧的 data-theme 由 <head> 里那段脚本定。 */
+
+const THEME_KEY = 'nanatata-theme';
+const sysDark = matchMedia('(prefers-color-scheme: dark)');
+const themeBtn = $('#theme');
+const systemTheme = () => (sysDark.matches ? 'dark' : 'light');
+
+function labelTheme() {
+  const dark = root.dataset.theme === 'dark';
+  themeBtn.setAttribute('aria-label', dark
+    ? (zh() ? '切换到浅色' : 'Switch to light')
+    : (zh() ? '切换到深色' : 'Switch to dark'));
+}
+
+function applyTheme() {
+  const saved = read(THEME_KEY);
+  root.dataset.theme = saved === 'dark' || saved === 'light' ? saved : systemTheme();
+  labelTheme();
+  dispatchEvent(new CustomEvent('themechange'));
+}
+
+themeBtn.addEventListener('click', () => {
+  const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+  keep(THEME_KEY, next === systemTheme() ? null : next);
+  applyTheme();
+});
+sysDark.addEventListener('change', applyTheme);
+labelTheme();
+
+/* ───────── §3 中英切换 ─────────
+   页面上的中文就是原文，英文挂在同一个节点的 data-en 上，SVG 里的 <text> 也一样。
+   切换时两边来回换内容，不复制一份 DOM，所以版面、动效、编号全都只有一套。 */
+
+const LANG_KEY = 'nanatata-lang';
+const textNodes = $$('[data-en]');          // 换 textContent
+const attrNodes = $$('[data-en-label]');    // 换 aria-label / meta content
+const langBtn = $('#lang');
+const attrOf = (el) => (el.tagName === 'META' ? 'content' : 'aria-label');
+
+function setLang(lang) {
+  const en = lang === 'en';
+
+  for (const el of textNodes) {
+    if (el.dataset.zh === undefined) el.dataset.zh = el.textContent.replace(/\s+/g, ' ').trim();
+    el.textContent = en ? el.dataset.en : el.dataset.zh;
+  }
+  for (const el of attrNodes) {
+    const attr = attrOf(el);
+    if (el.dataset.zhLabel === undefined) el.dataset.zhLabel = el.getAttribute(attr) || '';
+    el.setAttribute(attr, en ? el.dataset.enLabel : el.dataset.zhLabel);
+  }
+
+  root.lang = en ? 'en' : 'zh-CN';
+  langBtn.textContent = en ? '中' : 'EN';
+  langBtn.setAttribute('aria-label', en ? '切换到中文' : 'Switch to English');
+  labelTheme();
+  keep(LANG_KEY, lang);
+}
+
+// 没存过就看浏览器：不是中文环境的访客直接拿到英文
+const savedLang = read(LANG_KEY);
+const zhFirst = (navigator.language || 'zh').toLowerCase().startsWith('zh');
+setLang(savedLang === 'en' || savedLang === 'zh' ? savedLang : zhFirst ? 'zh' : 'en');
+
+langBtn.addEventListener('click', () => setLang(zh() ? 'en' : 'zh'));
+
+/* ───────── §4 窗口展开 ─────────
+   窗口滚进视口才“打开”，打开一次就不再管。 */
+
+const wins = $$('.win');
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver(
+    (entries, obs) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        e.target.classList.add('is-in');
+        obs.unobserve(e.target);
+      }
+    },
+    { rootMargin: '0px 0px -8% 0px' }
+  );
+  wins.forEach((w) => io.observe(w));
+} else {
+  wins.forEach((w) => w.classList.add('is-in'));
+}
