@@ -1,6 +1,6 @@
 /* ============================================================
    NANATATA 个人网站 —— 背景里的那座城
-   一座直播塔（AI 虚拟主播：顶上的球往外发电波，弹幕条往塔上飞），
+   一座直播塔（顶上的球往外发电波，身后一圈金色的玫瑰窗光环，弹幕条往塔上飞），
    一条横过天空的胶卷和一枚放大镜（Photo All Studio），
    周围是同一种蓝的低多边形城市。滚动页面，镜头就沿一条路线在城里走。
 
@@ -29,14 +29,14 @@ const PAL = {
   light: {
     hi: '#fbfeff', mid: '#a3dbf8', lo: '#4a82e4',
     inkHi: '#bde8fd', inkMid: '#58adf0', inkLo: '#2152cc',
-    fog: '#f2fbff', line: '#58b2f0', red: '#e04a3f', win: '#2a5fd6', chat: '#3f9df0',
+    fog: '#f2fbff', line: '#58b2f0', red: '#e04a3f', gold: '#d29a2e', win: '#2a5fd6', chat: '#3f9df0',
     glass: '#ffffff', film: '#13286a', hole: '#eefaff', f1: '#a9dcf8', f2: '#7cc1f3', f3: '#c6e9fc',
     star: '#ffffff', near: 90, far: 360, stars: 0.5,
   },
   dark: {
     hi: '#4f86ee', mid: '#2149b8', lo: '#0d1f6a',
     inkHi: '#3a6ad8', inkMid: '#173894', inkLo: '#08154c',
-    fog: '#12297e', line: '#62c4ff', red: '#ff6052', win: '#a8ecff', chat: '#8fe2ff',
+    fog: '#12297e', line: '#62c4ff', red: '#ff6052', gold: '#f3c96b', win: '#a8ecff', chat: '#8fe2ff',
     glass: '#9fe6ff', film: '#050d2e', hole: '#a8e4ff', f1: '#2f63d8', f2: '#2453c4', f3: '#3d78e8',
     star: '#d8f4ff', near: 70, far: 300, stars: 0.95,
   },
@@ -147,6 +147,11 @@ block(-58, -14, 6, 30, 6, { y: Y0 });
 mesh(pyramid(4.4, 12), paper, -58, Y0 + 30, -14);
 block(-49, -1, 5, 18, 5, { y: Y0 });
 mesh(pyramid(3.6, 8), paper, -49, Y0 + 18, -1);
+// 两座尖塔顶上各立一枚金十字
+for (const [x, z, top, k] of [[-58, -14, Y0 + 42, 1], [-49, -1, Y0 + 26, 0.75]]) {
+  block(x, z, 0.5 * k, 5 * k, 0.5 * k, { y: top, mat: flat('gold') });
+  block(x, z, 2.8 * k, 0.5 * k, 0.5 * k, { y: top + 3 * k, mat: flat('gold') });
+}
 
 // 竖条纹的楼群：立面上贴几根深色细条
 for (const [x, z, h] of [[-42, -25, 34], [-35, -27, 44], [-28, -24, 30], [-21, -28, 40]]) {
@@ -231,10 +236,36 @@ const liveDot = mesh(new THREE.SphereGeometry(0.9, 8, 6), flat('red'), TX, 73.6,
 
 // 从观景台拉到地面的红缆绳
 {
-  const red = lines('red');
+  const gold = lines('gold');
   for (const a of [0.35, 1.9, 3.5, 5.0]) {
-    line([V(TX + Math.cos(a) * 11, 35, TZ + Math.sin(a) * 11), V(TX + Math.cos(a) * 36, TY, TZ + Math.sin(a) * 36)], red);
+    line([V(TX + Math.cos(a) * 11, 35, TZ + Math.sin(a) * 11), V(TX + Math.cos(a) * 36, TY, TZ + Math.sin(a) * 36)], gold);
   }
+}
+
+// 塔顶身后的玫瑰窗光环：两圈同心环、十二瓣、二十四道光芒，正对着镜头那一面慢慢转
+const halo = new THREE.Group();
+{
+  const gm = lines('gold', 0.85);
+  const ring = (r, n = 96) => Array.from({ length: n + 1 }, (_, i) => {
+    const a = (i / n) * Math.PI * 2;
+    return V(Math.cos(a) * r, Math.sin(a) * r, 0);
+  });
+  for (const r of [10, 12.5, 20]) halo.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(ring(r)), gm));
+  const seg = [];
+  for (let i = 0; i < 12; i++) {                 // 十二瓣：每瓣一个小圆，压在两圈环之间
+    const a = (i / 12) * Math.PI * 2, cx = Math.cos(a) * 15.5, cy = Math.sin(a) * 15.5;
+    for (let j = 0; j < 16; j++) {
+      const b0 = (j / 16) * Math.PI * 2, b1 = ((j + 1) / 16) * Math.PI * 2;
+      seg.push(V(cx + Math.cos(b0) * 3, cy + Math.sin(b0) * 3, 0), V(cx + Math.cos(b1) * 3, cy + Math.sin(b1) * 3, 0));
+    }
+  }
+  for (let i = 0; i < 24; i++) {                 // 光芒：一长一短交替
+    const a = (i / 24) * Math.PI * 2, r1 = i % 2 ? 26 : 32;
+    seg.push(V(Math.cos(a) * 21, Math.sin(a) * 21, 0), V(Math.cos(a) * r1, Math.sin(a) * r1, 0));
+  }
+  halo.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(seg), gm));
+  halo.position.set(TX, 59, TZ - 6);
+  scene.add(halo);
 }
 
 // 电波：三圈环从球心往外扩，扩到最大时淡掉
@@ -478,6 +509,7 @@ function animate(time, dt) {
     w.material.opacity = (1 - k) * 0.85;
   });
   liveDot.visible = Math.floor(time * 1.6) % 2 === 0;
+  halo.rotation.z = time * 0.05;
 
   for (const c of chatData) {
     c.x += c.v * dt;

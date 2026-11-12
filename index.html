@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title data-en="NANATATA — Turn ideas into things people can use">NANATATA — 把想法，做成能用的东西</title>
 <meta name="description"
-      data-en-label="NANATATA&#39;s personal site. AI applications, human-computer interaction and shipping real software: AI Virtual Streamer, Photo All Studio."
-      content="NANATATA 的个人网站。AI 应用、人机交互与工程落地：AI 虚拟主播、Photo All Studio。">
+      data-en-label="NANATATA&#39;s personal site: Photo All Studio, an electronic light table for Windows, and Photo All Film Camera for Android."
+      content="NANATATA 的个人网站：Photo All Studio（Windows 电子观片台）与 Photo All 胶片相机（Android）。">
 <meta name="color-scheme" content="light dark">
 <!-- 深浅色在画第一帧之前就定下来，避免先闪一下浅色：读者选过就用选的，没选过跟系统 -->
 <script>
@@ -43,8 +43,10 @@
 </div>
 
 <header class="hero" id="top">
+  <p class="inscr" data-en="FIAT LUX · let there be light">FIAT LUX · 要有光</p>
   <h1 class="title">NANATATA</h1>
   <p class="tagline" data-en="Turn ideas into things people can use.">把想法，做成能用的东西。</p>
+  <div class="orn left" aria-hidden="true"></div>
   <a class="cue" href="#about" aria-label="向下" data-en-label="Scroll down">
     <svg viewBox="0 0 9 9" aria-hidden="true"><path fill="currentColor" d="M0 2h1v1h-1zM8 2h1v1h-1zM0 3h2v1h-2zM7 3h2v1h-2zM1 4h2v1h-2zM6 4h2v1h-2zM2 5h2v1h-2zM5 5h2v1h-2zM3 6h3v1h-3zM4 7h1v1h-1z"/></svg>
   </a>
@@ -58,7 +60,7 @@
   <div class="body">
     <p class="who">NANATATA <span data-en="AI apps · HCI · shipping">AI 应用 · 人机交互 · 工程落地</span></p>
     <p class="lead" data-en="Turn ideas into things people can use.">把想法，做成能用的东西。</p>
-    <p data-en="Two Windows desktop apps, both downloadable as an exe — not demos. The windows below explain how they work inside.">两个 Windows 桌面软件，都能下载到 exe，不是演示 demo。下面几扇窗讲的是它们内部怎么跑。</p>
+    <p data-en="Photo All is where most of my care goes: a light table on Windows, a film camera on Android. Both are free, open source and keep your photos on your own device.">花心思最多的是 Photo All：Windows 上是一张电子观片台，Android 上是一台胶片相机。都免费开源，照片只留在你自己的设备上。</p>
     <ul class="keys">
       <li><a class="k" href="mailto:zhenhao897@gmail.com" aria-label="邮件" data-en-label="Email">
         <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M1 3h14v1h-14zM1 4h2v1h-2zM13 4h2v1h-2zM1 5h1v1h-1zM3 5h1v1h-1zM12 5h1v1h-1zM14 5h1v1h-1zM1 6h1v1h-1zM4 6h1v1h-1zM11 6h1v1h-1zM14 6h1v1h-1zM1 7h1v1h-1zM5 7h1v1h-1zM10 7h1v1h-1zM14 7h1v1h-1zM1 8h1v1h-1zM6 8h1v1h-1zM9 8h1v1h-1zM14 8h1v1h-1zM1 9h1v1h-1zM7 9h2v1h-2zM14 9h1v1h-1zM1 10h1v1h-1zM14 10h1v1h-1zM1 11h1v1h-1zM14 11h1v1h-1zM1 12h14v1h-14z"/></svg>
@@ -75,342 +77,152 @@
   <header class="bar"><h2 id="t-works" data-en="Works">作品</h2></header>
   <div class="body">
     <ul class="list">
+      <li><a class="row" href="#photo">
+        <span class="shot"><img src="assets/img/lt-loupe.webp" width="64" height="64" alt=""></span>
+        <span class="row-main"><b>Photo All Studio</b><small data-en="Windows · a light table you can switch on">Windows · 可以开灯的电子观片台</small></span>
+        <span class="meta">GPL-3.0</span>
+      </a></li>
+      <li><a class="row" href="#android">
+        <span class="shot glyph" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M5 2h6v1H5zM2 4h12v1H2zM1 5h1v8H1zM14 5h1v8h-1zM2 13h12v1H2zM6 6h4v1H6zM5 7h1v4H5zM10 7h1v4h-1zM6 11h4v1H6zM7 8h1v1H7zM12 6h1v1h-1z"/></svg></span>
+        <span class="row-main"><b data-en="Photo All · Film Camera">Photo All · 胶片相机</b><small data-en="Android · shoot it, then let the darkroom develop it">Android · 按下快门，交给暗房</small></span>
+        <span class="meta">APK</span>
+      </a></li>
       <li><a class="row" href="#streamer">
         <span class="shot"><svg class="thumb" viewBox="0 0 32 32" shape-rendering="crispEdges" aria-hidden="true"><path class="ta" d="M1 15h9v1h-9zM3 19h8v1h-8zM22 22h10v1h-10zM22 26h7v1h-7z"/><path class="tw" d="M13 6h2v1h-2zM13 7h2v1h-2zM0 30h10v1h-10zM22 30h10v1h-10zM0 31h10v1h-10zM22 31h10v1h-10z"/><path class="tm" d="M10 0h2v1h-2zM20 0h2v1h-2zM9 1h1v1h-1zM22 1h1v1h-1zM8 2h1v1h-1zM13 2h1v1h-1zM18 2h1v1h-1zM23 2h1v1h-1zM7 3h1v1h-1zM12 3h2v1h-2zM18 3h2v1h-2zM24 3h1v1h-1zM7 4h1v1h-1zM11 4h1v1h-1zM20 4h1v1h-1zM24 4h1v1h-1zM6 5h1v1h-1zM10 5h1v1h-1zM21 5h1v1h-1zM25 5h1v1h-1zM6 6h1v1h-1zM9 6h2v1h-2zM21 6h2v1h-2zM25 6h1v1h-1zM6 7h1v1h-1zM9 7h1v1h-1zM22 7h1v1h-1zM25 7h1v1h-1zM6 8h1v1h-1zM9 8h1v1h-1zM22 8h1v1h-1zM25 8h1v1h-1zM6 9h1v1h-1zM9 9h1v1h-1zM22 9h1v1h-1zM25 9h1v1h-1zM6 10h1v1h-1zM9 10h1v1h-1zM22 10h1v1h-1zM25 10h1v1h-1zM6 11h1v1h-1zM9 11h2v1h-2zM21 11h2v1h-2zM25 11h1v1h-1zM16 12h1v1h-1zM16 13h1v1h-1zM16 14h2v1h-2zM16 15h2v1h-2zM1 16h9v1h-9zM16 16h2v1h-2zM16 17h2v1h-2zM16 18h3v1h-3zM16 19h3v1h-3zM3 20h8v1h-8zM16 20h3v1h-3zM16 21h3v1h-3zM16 22h3v1h-3zM16 23h4v1h-4zM22 23h10v1h-10zM16 24h4v1h-4zM16 25h4v1h-4zM22 27h7v1h-7z"/><path class="td" d="M15 5h2v1h-2zM15 6h4v1h-4zM15 7h4v1h-4zM12 8h8v1h-8zM12 9h8v1h-8zM13 10h6v1h-6zM13 11h6v1h-6zM15 12h1v1h-1zM15 13h1v1h-1zM14 14h2v1h-2zM14 15h2v1h-2zM14 16h2v1h-2zM14 17h2v1h-2zM13 18h3v1h-3zM13 19h3v1h-3zM13 20h3v1h-3zM13 21h3v1h-3zM13 22h3v1h-3zM12 23h4v1h-4zM12 24h4v1h-4zM12 25h4v1h-4zM10 26h12v1h-12zM10 27h12v1h-12zM10 28h12v1h-12zM10 29h12v1h-12zM10 30h12v1h-12zM10 31h12v1h-12z"/></svg></span>
         <span class="row-main"><b data-en="AI Virtual Streamer">AI 虚拟主播</b><small data-en="A Live2D host that reads the chat">看着弹幕陪聊的 Live2D 主播</small></span>
         <span class="meta">MIT</span>
       </a></li>
-      <li><a class="row" href="#photo">
-        <span class="shot"><svg class="thumb" viewBox="0 0 32 32" shape-rendering="crispEdges" aria-hidden="true"><path class="ta" d="M16 8h8v1h-8zM15 9h1v1h-1zM18 9h7v1h-7zM1 10h10v1h-10zM14 10h1v1h-1zM19 10h7v1h-7zM29 10h3v1h-3zM1 11h9v1h-9zM13 11h2v1h-2zM19 11h8v1h-8zM30 11h2v1h-2zM1 12h9v1h-9zM13 12h3v1h-3zM18 12h9v1h-9zM30 12h2v1h-2zM1 13h9v1h-9zM13 13h7v1h-7zM22 13h5v1h-5zM30 13h2v1h-2zM1 14h9v1h-9zM13 14h6v1h-6zM23 14h4v1h-4zM30 14h2v1h-2zM1 15h9v1h-9zM13 15h5v1h-5zM24 15h3v1h-3zM30 15h2v1h-2zM1 16h9v1h-9zM30 16h2v1h-2z"/><path class="tw" d="M16 5h8v1h-8zM14 6h3v1h-3zM23 6h3v1h-3zM13 7h2v1h-2zM25 7h2v1h-2zM1 8h1v1h-1zM5 8h1v1h-1zM9 8h1v1h-1zM12 8h2v1h-2zM26 8h2v1h-2zM29 8h1v1h-1zM11 9h2v1h-2zM16 9h2v1h-2zM27 9h2v1h-2zM11 10h1v1h-1zM15 10h4v1h-4zM28 10h1v1h-1zM10 11h2v1h-2zM15 11h4v1h-4zM28 11h2v1h-2zM10 12h1v1h-1zM16 12h2v1h-2zM29 12h1v1h-1zM10 13h1v1h-1zM29 13h1v1h-1zM10 14h1v1h-1zM29 14h1v1h-1zM10 15h1v1h-1zM29 15h1v1h-1zM10 16h1v1h-1zM29 16h1v1h-1zM10 17h1v1h-1zM29 17h1v1h-1zM10 18h2v1h-2zM28 18h2v1h-2zM11 19h1v1h-1zM28 19h1v1h-1zM11 20h2v1h-2zM27 20h2v1h-2zM12 21h2v1h-2zM26 21h2v1h-2zM13 22h2v1h-2zM25 22h2v1h-2zM1 23h1v1h-1zM5 23h1v1h-1zM9 23h1v1h-1zM13 23h4v1h-4zM23 23h3v1h-3zM29 23h1v1h-1zM16 24h8v1h-8z"/><path class="tm" d="M20 13h2v1h-2zM19 14h4v1h-4zM18 15h6v1h-6zM13 16h14v1h-14zM1 17h9v1h-9zM13 17h14v1h-14zM30 17h2v1h-2zM1 18h9v1h-9zM13 18h14v1h-14zM30 18h2v1h-2zM1 19h10v1h-10zM14 19h12v1h-12zM29 19h3v1h-3zM1 20h10v1h-10zM15 20h10v1h-10zM29 20h3v1h-3zM1 21h10v1h-10zM16 21h8v1h-8zM28 21h4v1h-4z"/><path class="td" d="M17 6h6v1h-6zM0 7h13v1h-13zM15 7h10v1h-10zM27 7h5v1h-5zM0 8h1v1h-1zM2 8h3v1h-3zM6 8h3v1h-3zM10 8h2v1h-2zM14 8h2v1h-2zM24 8h2v1h-2zM28 8h1v1h-1zM30 8h2v1h-2zM0 9h11v1h-11zM13 9h2v1h-2zM25 9h2v1h-2zM29 9h3v1h-3zM0 10h1v1h-1zM12 10h2v1h-2zM26 10h2v1h-2zM0 11h1v1h-1zM12 11h1v1h-1zM27 11h1v1h-1zM0 12h1v1h-1zM11 12h2v1h-2zM27 12h2v1h-2zM0 13h1v1h-1zM11 13h2v1h-2zM27 13h2v1h-2zM0 14h1v1h-1zM11 14h2v1h-2zM27 14h2v1h-2zM0 15h1v1h-1zM11 15h2v1h-2zM27 15h2v1h-2zM0 16h1v1h-1zM11 16h2v1h-2zM27 16h2v1h-2zM0 17h1v1h-1zM11 17h2v1h-2zM27 17h2v1h-2zM0 18h1v1h-1zM12 18h1v1h-1zM27 18h1v1h-1zM0 19h1v1h-1zM12 19h2v1h-2zM26 19h2v1h-2zM0 20h1v1h-1zM13 20h2v1h-2zM25 20h2v1h-2zM0 21h1v1h-1zM11 21h1v1h-1zM14 21h2v1h-2zM24 21h2v1h-2zM0 22h13v1h-13zM15 22h10v1h-10zM27 22h5v1h-5zM0 23h1v1h-1zM2 23h3v1h-3zM6 23h3v1h-3zM10 23h3v1h-3zM17 23h6v1h-6zM26 23h3v1h-3zM30 23h2v1h-2zM0 24h16v1h-16zM24 24h8v1h-8zM28 25h3v1h-3zM29 26h3v1h-3zM30 27h2v1h-2zM31 28h1v1h-1z"/></svg></span>
-        <span class="row-main"><b>Photo All Studio</b><small data-en="A light table, film simulation, a precise edit mode">观片台 · 胶片模拟 · 高精度编辑</small></span>
-        <span class="meta">GPL-3.0</span>
-      </a></li>
     </ul>
-    <p class="more"><a href="https://github.com/YZH2006517?tab=repositories" target="_blank" rel="noopener"><span data-en="All repos">全部仓库</span><svg viewBox="0 0 7 7" aria-hidden="true"><path fill="currentColor" d="M1 1h1v1h-1zM1 2h2v1h-2zM1 3h3v1h-3zM1 4h2v1h-2zM1 5h1v1h-1z"/></svg></a></p>
   </div>
 </section>
 
-<!-- ═══════ 项目一：虚拟主播 ═══════ -->
-<section class="win wide" id="streamer" aria-labelledby="t-streamer" style="--c: 1 / span 10; --mt: 16vh">
-  <header class="bar"><h2 id="t-streamer" data-en="AI Virtual Streamer — the path a comment takes">AI 虚拟主播 — 一条弹幕要走的路</h2><span class="tag">PROJECT 01</span></header>
+<!-- ═══════ Photo All Studio：开场 ═══════ -->
+<section class="win wide" id="photo" aria-labelledby="t-photo" style="--c: 1 / span 10; --mt: 16vh">
+  <header class="bar"><h2 id="t-photo" data-en="Photo All Studio · Windows">Photo All Studio · Windows</h2><span class="tag">I</span></header>
+  <div class="body feature">
+    <figure class="arch"><img src="assets/img/lt-stage.webp" width="1500" height="908" loading="lazy" alt="Photo All Studio 的观片台：背光下摆着一组照片" data-en-label="The Photo All Studio light table with a set of photos laid out under the backlight"></figure>
+    <div class="pitch">
+      <p class="kicker" data-en="An electronic light table for Windows">Windows 上的电子观片台</p>
+      <p class="big" data-en="Let your photos slowly glow.">让照片，慢慢发光。</p>
+      <p data-en="A light table you can switch on, lay photos across and magnify — and a local workbench that goes from picking to grading to the final print.">一张可以开灯、摆片、放大细节的电子观片台，也是一套从选片到修图出片的本地工作台。</p>
+      <ul class="chips">
+        <li data-en="Free &amp; open source">免费开源</li><li data-en="Processed locally">本地处理</li><li data-en="Originals read-only">原片只读</li>
+      </ul>
+      <p class="acts">
+        <a class="btn" href="https://github.com/YZH2006517/Photo-All/releases" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M7 1h2v1h-2zM7 2h2v1h-2zM7 3h2v1h-2zM7 4h2v1h-2zM4 5h1v1h-1zM7 5h2v1h-2zM11 5h1v1h-1zM4 6h2v1h-2zM7 6h2v1h-2zM10 6h2v1h-2zM5 7h6v1h-6zM6 8h4v1h-4zM7 9h2v1h-2zM1 11h2v1h-2zM13 11h2v1h-2zM1 12h2v1h-2zM13 12h2v1h-2zM1 13h14v1h-14zM1 14h14v1h-14z"/></svg><span data-en="Free download">免费下载</span></a>
+        <a class="btn ghost" href="https://github.com/YZH2006517/Photo-All" target="_blank" rel="noopener"><span data-en="Source">查看源码</span></a>
+        <span class="meta">Windows 10/11 x64</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ Photo All Studio：观片台 ═══════ -->
+<section class="win wide ov" id="photo-table" aria-labelledby="t-pt" style="--c: 3 / span 10; --mt: 12vh">
+  <header class="bar"><h2 id="t-pt" data-en="The light table — see photos the way you look at film">观片台 — 像看胶卷一样，重新看见照片</h2><span class="tag">II</span></header>
+  <div class="body">
+    <ul class="cards">
+      <li><figure class="arch"><img src="assets/img/lt-table-free.webp" width="1500" height="908" loading="lazy" alt=""></figure>
+        <h3><kbd>G</kbd><span data-en="Lay them out freely">自由摆片</span></h3>
+        <p data-en="Drag, resize one by one, tile in one key. The table stays the way you left it.">拖动、逐张缩放、一键平铺。台面怎么摆，下次回来还是那样。</p></li>
+      <li><figure class="arch"><img src="assets/img/lt-loupe.webp" width="1500" height="908" loading="lazy" alt=""></figure>
+        <h3><kbd>V</kbd><span data-en="Pick up the loupe">拿起放大镜</span></h3>
+        <p data-en="Press V to open a refracting lens where the cursor is. The rest of the table stays in view.">V 键在鼠标位置开镜，倍率和镜片尺寸分开调，镜外还看得见整张台面。</p></li>
+      <li><figure class="arch"><img src="assets/img/lt-roll-1.webp" width="1500" height="908" loading="lazy" alt=""></figure>
+        <h3><kbd>C</kbd><span data-en="A continuous roll">连续胶卷</span></h3>
+        <p data-en="Frames join end to end and slide sideways. It can play itself and pauses when you touch it.">首尾相接，横向滑动。可以自动播放，手一碰就停。</p></li>
+      <li><figure class="arch"><img src="assets/img/lt-immersive.webp" width="1500" height="908" loading="lazy" alt=""></figure>
+        <h3><kbd>I</kbd><span data-en="Nothing but the photos">只剩照片</span></h3>
+        <p data-en="Tools appear only on Space or at the screen edge. Sprocket holes and borders can be turned off.">按空格或碰到屏幕边缘才唤出工具，片孔、边框装饰都能关。</p></li>
+      <li><figure class="arch"><img src="assets/img/lt-off-dark.webp" width="1500" height="908" loading="lazy" alt=""></figure>
+        <h3><kbd>L</kbd><span data-en="Lights off">关灯</span></h3>
+        <p data-en="With the lamp off the photos only let a little light through — beige, warm grey or charcoal underneath.">关灯后照片只透一点光，底色有米黄、暖灰、灰黑，也能自定义。</p></li>
+      <li><figure class="arch"><img src="assets/img/collection-shelf.webp" width="1800" height="1089" loading="lazy" alt=""></figure>
+        <h3><kbd>⌂</kbd><span data-en="The film archive">胶片收藏室</span></h3>
+        <p data-en="Albums become rolls of 36 frames on a 3D shelf. Pick one and it drops onto the desk and unrolls.">图集分卷收上三维胶卷架，每卷 36 帧。选一卷，暗盒落桌、胶片展开。</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════ Photo All Studio：调色、冲印、片边 ═══════ -->
+<section class="win wide" id="photo-color" aria-labelledby="t-pc" style="--c: 1 / span 10; --mt: 12vh">
+  <header class="bar"><h2 id="t-pc" data-en="Grade · print · borders — give a set of photos one mood">调色 · 冲印 · 片边 — 让一组照片拥有同一种情绪</h2><span class="tag">III</span></header>
+  <div class="body">
+    <ul class="nums">
+      <li><b>126</b><span data-en="open LUTs">款开放 LUT</span></li>
+      <li><b>17</b><span data-en="creative looks">款创意风格</span></li>
+      <li><b>16</b><span data-en="Spektrafilm stocks">款 Spektrafilm 色彩</span></li>
+      <li><b>16</b><span data-en="stackable layers">层可叠加</span></li>
+    </ul>
+    <div class="orn" aria-hidden="true"></div>
+    <p class="center" data-en="Expose first, then print. Each photo is exposed onto a film stock&#39;s spectral data, then printed through an enlarger onto paper — not a colour filter laid on top.">先曝光，再冲印。照片先按片种的光谱数据曝光到胶片，再经放大机印到相纸 —— 不是简单套一层颜色。</p>
+    <ol class="stations">
+      <li><i>I</i><b data-en="Film">胶片</b><span data-en="Exposed by the stock&#39;s spectral sensitivity">按片种的光谱灵敏度曝光</span></li>
+      <li><i>II</i><b data-en="Develop">显影</b><span data-en="Couplers, halation and grain, in the negative">耦合剂、光晕、颗粒，在负片阶段就算进去</span></li>
+      <li><i>III</i><b data-en="Enlarger">放大机</b><span data-en="Filtration, pre-flash, light source">调滤色、预闪和光源，像在暗房里校色</span></li>
+      <li><i>IV</i><b data-en="Paper">相纸</b><span data-en="The final contrast and tone">定下最后的反差和色调</span></li>
+    </ol>
+    <div class="split">
+      <figure class="arch"><img src="assets/img/border-photo.webp" width="1600" height="1067" loading="lazy" alt="带 35mm 片边的照片" data-en-label="A photo with a 35mm film border"></figure>
+      <div>
+        <p class="big" data-en="A border for every photo.">给每张照片，配一条片边。</p>
+        <p data-en="35mm, 120, rough scan edges, slide mounts and paper margins. Roll name, date, frame number and signature are yours to write, and export with the photo.">35mm、120、扫描毛边、幻灯片、相纸留白。卷名、日期、帧号和签名都能自己写，随照片一起导出。</p>
+        <ul class="chips"><li>RAW</li><li data-en="16-bit export">16-bit 导出</li><li data-en="Offline picking">离线识图选片</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ Photo All · 胶片相机（Android） ═══════ -->
+<section class="win wide ov" id="android" aria-labelledby="t-and" style="--c: 3 / span 10; --mt: 12vh">
+  <header class="bar"><h2 id="t-and" data-en="Photo All · Film Camera · Android">Photo All · 胶片相机 · Android</h2><span class="tag">IV</span></header>
+  <div class="body">
+    <p class="kicker" data-en="A film camera in your phone">装在手机里的胶片相机</p>
+    <p class="big" data-en="Press the shutter. The darkroom does the rest.">按下快门，剩下的交给暗房。</p>
+    <p data-en="The viewfinder already shows the film. After the shot, the photo (RAW by default) is developed on the phone&#39;s GPU: exposed to film, developed, printed to paper — about three seconds from RAW to a finished frame.">取景时就能看到胶片效果。按下快门后，照片（默认 RAW）在手机 GPU 上冲洗：曝光到胶片、显影、再印放到相纸 —— 从 RAW 到成片约 3 秒。</p>
+    <ul class="nums">
+      <li><b>22</b><span data-en="film stocks">种胶片</span></li>
+      <li><b>9</b><span data-en="papers">种相纸</span></li>
+      <li><b>416</b><span data-en="creative LUTs">个创意 LUT</span></li>
+      <li><b>≈3s</b><span data-en="RAW to print">RAW 到成片</span></li>
+    </ul>
+    <div class="orn" aria-hidden="true"></div>
+    <ul class="hooks">
+      <li><b data-en="The viewfinder is the print">取景就是成片</b><span data-en="Live film preview that matches the final brightness and colour.">取景器实时预览胶片效果，和成片的亮度、色彩对得上。</span></li>
+      <li><b data-en="The shutter becomes a dial">快门变旋钮</b><span data-en="Circle the shutter to set LUT strength — clockwise richer, anticlockwise lighter.">在快门上画圈调 LUT 强度，顺时针更浓、逆时针更淡，边转边看。</span></li>
+      <li><b data-en="Flash that holds back">会收着打的闪光</b><span data-en="One ambient frame plus one flash frame, re-balanced in RAW to darken the background and lift the subject.">一帧环境光加一帧闪光，在 RAW 里重新配比，压暗背景、突出主体。</span></li>
+      <li><b data-en="Turn it sideways">横过来就是机身</b><span data-en="A glowing fan appears; tap it for a layout with a scroll wheel, dial and lens ring.">横屏时左下角浮起一片发光扇形，点它切到带滚轮、刻度波轮和镜头盘的布局。</span></li>
+      <li><b data-en="Five themes">五套主题</b><span data-en="Film canister, darkroom red light (red only, for night), paper, brass, cold silver.">暗盒、暗房红灯（夜拍只用红光）、相纸、黄铜、冷银。</span></li>
+      <li><b data-en="Every frame remembered">每一张都有档案</b><span data-en="Camera, exposure, focus and every decision the engine made, one tap to copy.">相机、曝光、白平衡、对焦，冲洗引擎的每个决定，一键复制。</span></li>
+    </ul>
+    <p class="acts">
+      <a class="btn" href="https://github.com/YZH2006517/Photo-All-Android/releases" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M7 1h2v1h-2zM7 2h2v1h-2zM7 3h2v1h-2zM7 4h2v1h-2zM4 5h1v1h-1zM7 5h2v1h-2zM11 5h1v1h-1zM4 6h2v1h-2zM7 6h2v1h-2zM10 6h2v1h-2zM5 7h6v1h-6zM6 8h4v1h-4zM7 9h2v1h-2zM1 11h2v1h-2zM13 11h2v1h-2zM1 12h2v1h-2zM13 12h2v1h-2zM1 13h14v1h-14zM1 14h14v1h-14z"/></svg><span data-en="Download APK">下载 APK</span></a>
+      <a class="btn ghost" href="https://github.com/YZH2006517/Photo-All-Android" target="_blank" rel="noopener"><span data-en="Source">查看源码</span></a>
+      <span class="meta" data-en="Android 10+ · arm64 · Vulkan 1.1">Android 10+ · arm64 · Vulkan 1.1</span>
+    </p>
+  </div>
+</section>
+
+<!-- ═══════ AI 虚拟主播（简） ═══════ -->
+<section class="win" id="streamer" aria-labelledby="t-streamer" style="--c: 1 / span 6; --mt: 14vh">
+  <header class="bar"><h2 id="t-streamer" data-en="AI Virtual Streamer">AI 虚拟主播</h2><span class="tag">V</span></header>
   <div class="body">
     <p data-en="A Live2D host reads the Douyin live chat and talks back, dances to the music, and runs chat minigames. One exe, your own LLM API key.">一个 Live2D 主播看着抖音弹幕陪观众聊天，还能跟着音乐跳舞、主持弹幕小游戏。下载一个 exe 就能用，填自己的大模型 API Key。</p>
-
-    <figure class="fig">
-      <p class="hint" data-en="◂ swipe to see the whole diagram ▸">◂ 左右滑动看全图 ▸</p>
-      <div class="scroller">
-      <svg class="diagram" viewBox="0 0 900 252" width="900" height="252" role="img"
-           data-en-label="A comment is scraped from the Douyin live page, queued (merged into one question when chat floods), answered by a cloud LLM, then spoken by cloud Edge TTS whose audio drives the lip-sync. Music beats and gift thresholds take a second path that triggers motion and minigames. Both paths land in the Live2D canvas inside WebView2, which OBS captures."
-           aria-label="一条弹幕先从抖音直播间网页读进来，进入队列（留言太多时合并成一问），交给云端大模型生成回复，再由云端 Edge TTS 合成语音来驱动口型；背景音乐的节拍和礼物阈值另走一路，触发动作与弹幕小游戏；两路汇入 WebView2 里的 Live2D 画面，最后由 OBS 采集推流。">
-        <defs>
-          <marker id="s-ar" viewBox="0 0 8 8" refX="8" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto">
-            <path class="ah" d="M0 0h2v1h-2zM0 1h4v1h-4zM0 2h6v1h-6zM0 3h8v2h-8zM0 5h6v1h-6zM0 6h4v1h-4zM0 7h2v1h-2z"/>
-          </marker>
-        </defs>
-
-        <rect class="zone" x="322" y="8" width="298" height="108"/>
-        <text class="zone-tag" x="332" y="27" data-en="Cloud · metered · needs network">云端 · 按量计费 · 断网不可用</text>
-
-        <g class="node" style="--at:.6s"><rect x="2" y="44" width="128" height="60"/>
-          <text class="t" x="14" y="69" data-en="Live page">直播间网页</text>
-          <text class="s" x="14" y="91" data-en="scraped, no API">读网页，非接口</text></g>
-        <g class="node" style="--at:2.1s"><rect x="164" y="44" width="128" height="60"/>
-          <text class="t" x="176" y="69" data-en="Comment queue">留言队列</text>
-          <text class="s" x="176" y="91" data-en="merged if flood">多了合并成一问</text></g>
-        <g class="node" style="--at:3.6s"><rect x="326" y="44" width="128" height="60"/>
-          <text class="t" x="338" y="69" data-en="LLM">大模型</text>
-          <text class="s" x="338" y="91">OpenAI API</text></g>
-        <g class="node" style="--at:5.15s"><rect x="488" y="44" width="128" height="60"/>
-          <text class="t" x="500" y="69">Edge TTS</text>
-          <text class="s" x="500" y="91" data-en="online voice">微软在线语音</text></g>
-
-        <g class="node" style="--at:5.1s"><rect x="2" y="176" width="128" height="60"/>
-          <text class="t" x="14" y="201" data-en="Music · gifts">音乐 · 礼物</text>
-          <text class="s" x="14" y="223" data-en="all local">都在本机</text></g>
-        <g class="node" style="--at:6.6s"><rect x="164" y="176" width="128" height="60"/>
-          <text class="t" x="176" y="201" data-en="Beat · threshold">节拍 · 阈值</text>
-          <text class="s" x="176" y="223" data-en="fires by itself">攒够自动触发</text></g>
-        <g class="node" style="--at:8.1s"><rect x="326" y="176" width="128" height="60"/>
-          <text class="t" x="338" y="201" data-en="Motion · games">动作 · 小游戏</text>
-          <text class="s" x="338" y="223" data-en="app keeps score">程序判题计分</text></g>
-
-        <g class="node is-key" style="--at:6.6s"><rect x="650" y="44" width="110" height="192"/>
-          <text class="t" x="705" y="135" text-anchor="middle" data-en="Live2D">Live2D 画面</text>
-          <text class="s" x="705" y="157" text-anchor="middle">WebView2</text></g>
-        <g class="node" style="--at:8.5s"><rect x="794" y="110" width="104" height="60"/>
-          <text class="t" x="846" y="135" text-anchor="middle">OBS</text>
-          <text class="s" x="846" y="157" text-anchor="middle" data-en="capture">采集推流</text></g>
-
-        <g class="edge">
-          <path d="M130 74H162" marker-end="url(#s-ar)"/><text x="147" y="65" data-en="read">读取</text>
-          <path d="M292 74H324" marker-end="url(#s-ar)"/><text x="309" y="65" data-en="ask">排队</text>
-          <path d="M454 74H486" marker-end="url(#s-ar)"/><text x="471" y="65" data-en="text">文本</text>
-          <path d="M616 74H648" marker-end="url(#s-ar)"/><text x="633" y="65" data-en="lips">口型</text>
-          <path d="M130 206H162" marker-end="url(#s-ar)"/><text x="147" y="197" data-en="beat">节拍</text>
-          <path d="M292 206H324" marker-end="url(#s-ar)"/><text x="309" y="197" data-en="fire">触发</text>
-          <path d="M454 206H648" marker-end="url(#s-ar)"/><text x="551" y="197" data-en="motion &amp; events">动作与活动</text>
-          <path d="M760 140H792" marker-end="url(#s-ar)"/><text x="776" y="131" data-en="feed">画面</text>
-        </g>
-
-        <rect class="pkt pkt-s1" x="-4" y="-4" width="8" height="8"/>
-        <rect class="pkt pkt-s2" x="-4" y="-4" width="8" height="8"/>
-      </svg>
-      </div>
-      <figcaption data-en="Only two steps leave the machine — the LLM and the voice. The API key is encrypted on disk with Windows DPAPI, and a local ledger tracks the day&#39;s token spend.">只有大模型和语音两步在云端，其余都在本机。API Key 用 Windows DPAPI 加密存在本地，账本记录当天的 token 花费。</figcaption>
-    </figure>
-
     <ul class="rows">
-      <li><b data-en="Reads the chat">读弹幕回答</b><span data-en="Scrapes and queues live-room comments, merges them when chat floods, honours a blocklist.">读直播间网页留言并排队，留言多时合并回答，支持屏蔽词。</span></li>
-      <li><b data-en="Persona and model">人设与形象</b><span data-en="Swap personality, voice and scene in one click; drop in your own Cubism 3 model as a zip.">性格、声音、场景一键换；可导入自己的 Cubism 3 模型（zip）。</span></li>
-      <li><b data-en="Chat minigames">弹幕小游戏</b><span data-en="The LLM writes the questions live; the app scores them and keeps the leaderboard.">大模型现场出题，程序判题计分，积分榜与排行榜大屏。</span></li>
-      <li><b data-en="Cost you can see">成本可见</b><span data-en="A local ledger records the day&#39;s token spend and gift income. No nudging for donations.">本地账本记录当天 token 花费与礼物收入，不做诱导打赏。</span></li>
-    </ul>
-
-    <p class="acts">
-      <a class="btn" href="https://github.com/YZH2006517/ai-virtual-streamer/releases" target="_blank" rel="noopener">
-        <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M7 1h2v1h-2zM7 2h2v1h-2zM7 3h2v1h-2zM7 4h2v1h-2zM4 5h1v1h-1zM7 5h2v1h-2zM11 5h1v1h-1zM4 6h2v1h-2zM7 6h2v1h-2zM10 6h2v1h-2zM5 7h6v1h-6zM6 8h4v1h-4zM7 9h2v1h-2zM1 11h2v1h-2zM13 11h2v1h-2zM1 12h2v1h-2zM13 12h2v1h-2zM1 13h14v1h-14zM1 14h14v1h-14z"/></svg><span data-en="Download">下载 Releases</span></a>
-      <a class="btn" href="https://github.com/YZH2006517/ai-virtual-streamer" target="_blank" rel="noopener">
-        <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M10 3h1v1h-1zM4 4h1v1h-1zM10 4h1v1h-1zM13 4h1v1h-1zM3 5h2v1h-2zM9 5h1v1h-1zM13 5h2v1h-2zM2 6h2v1h-2zM9 6h1v1h-1zM14 6h2v1h-2zM1 7h2v1h-2zM8 7h1v1h-1zM15 7h1v1h-1zM1 8h2v1h-2zM8 8h1v1h-1zM15 8h1v1h-1zM2 9h2v1h-2zM7 9h1v1h-1zM14 9h2v1h-2zM3 10h2v1h-2zM7 10h1v1h-1zM13 10h2v1h-2zM4 11h1v1h-1zM6 11h1v1h-1zM13 11h1v1h-1zM6 12h1v1h-1z"/></svg><span data-en="Source">源码</span></a>
-      <span class="meta">Python · Live2D Cubism · Edge TTS · WebView2 · MIT</span>
-    </p>
-  </div>
-</section>
-
-<!-- ═══════ 项目二：Photo All 总览 ═══════ -->
-<section class="win" id="photo" aria-labelledby="t-photo" style="--c: 7 / span 6; --mt: 14vh">
-  <header class="bar"><h2 id="t-photo">Photo All Studio</h2><span class="tag">PROJECT 02</span></header>
-  <div class="body">
-    <p class="lead" data-en="Import to export, in one app.">从导入到出片，一个软件走完。</p>
-    <p data-en="A light table you can switch on, lay film across and magnify; film simulation shown on the real frame; and an edit mode that keeps full precision. The three windows below take one claim each.">一张能开灯、摆片、放大细节的观片台，一套打在真实画面上的胶片模拟，一个不丢精度的编辑模式。下面三扇窗各讲一件事。</p>
-    <ul class="rows">
-      <li><b data-en="Refracting loupe">折射放大镜</b><span data-en="Magnification and lens size adjust separately; the table stays in view outside the glass.">倍率与镜片尺寸独立调节，镜外保留整张台面。</span></li>
-      <li><b data-en="Linked filters">联动筛选</b><span data-en="Color, warmth, content and style filters cross-count each other. Heart-picking with persistent undo.">颜色、冷暖、内容、风格条件互相联动统计，爱心选片与持久撤销。</span></li>
-      <li><b data-en="126 open LUTs">126 款开放 LUT</b><span data-en="Plus 17 creative looks and 16 Spektrafilm stocks, grouped and searchable.">另有 17 款创意风格与 16 款 Spektrafilm 色彩，搜索分组。</span></li>
-      <li><b data-en="Offline recognition">离线识图</b><span data-en="CLIP ONNX runs locally and tags by content. No image leaves the computer.">CLIP ONNX 在本机跑，按内容打标签，不上传任何图片。</span></li>
+      <li><b data-en="Persona and model">人设与形象</b><span data-en="Swap personality, voice and scene in one click; bring your own Cubism 3 model.">性格、声音、场景一键换，可导入自己的 Cubism 3 模型。</span></li>
+      <li><b data-en="Chat minigames">弹幕小游戏</b><span data-en="The LLM writes questions live; the app keeps score.">大模型现场出题，程序判题计分上排行榜。</span></li>
     </ul>
     <p class="acts">
-      <a class="btn" href="https://github.com/YZH2006517/Photo-All/releases" target="_blank" rel="noopener">
-        <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M7 1h2v1h-2zM7 2h2v1h-2zM7 3h2v1h-2zM7 4h2v1h-2zM4 5h1v1h-1zM7 5h2v1h-2zM11 5h1v1h-1zM4 6h2v1h-2zM7 6h2v1h-2zM10 6h2v1h-2zM5 7h6v1h-6zM6 8h4v1h-4zM7 9h2v1h-2zM1 11h2v1h-2zM13 11h2v1h-2zM1 12h2v1h-2zM13 12h2v1h-2zM1 13h14v1h-14zM1 14h14v1h-14z"/></svg><span data-en="Download">下载 Releases</span></a>
-      <a class="btn" href="https://github.com/YZH2006517/Photo-All" target="_blank" rel="noopener">
-        <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M10 3h1v1h-1zM4 4h1v1h-1zM10 4h1v1h-1zM13 4h1v1h-1zM3 5h2v1h-2zM9 5h1v1h-1zM13 5h2v1h-2zM2 6h2v1h-2zM9 6h1v1h-1zM14 6h2v1h-2zM1 7h2v1h-2zM8 7h1v1h-1zM15 7h1v1h-1zM1 8h2v1h-2zM8 8h1v1h-1zM15 8h1v1h-1zM2 9h2v1h-2zM7 9h1v1h-1zM14 9h2v1h-2zM3 10h2v1h-2zM7 10h1v1h-1zM13 10h2v1h-2zM4 11h1v1h-1zM6 11h1v1h-1zM13 11h1v1h-1zM6 12h1v1h-1z"/></svg><span data-en="Source">源码</span></a>
-      <span class="meta">Tauri · React · Python · RawTherapee · GPL-3.0</span>
+      <a class="btn" href="https://github.com/YZH2006517/ai-virtual-streamer/releases" target="_blank" rel="noopener"><span data-en="Download">下载</span></a>
+      <a class="btn ghost" href="https://github.com/YZH2006517/ai-virtual-streamer" target="_blank" rel="noopener"><span data-en="Source">源码</span></a>
     </p>
-  </div>
-</section>
-
-<!-- ═══════ Photo All 01 整合 ═══════ -->
-<section class="win wide" id="photo-1" aria-labelledby="t-p1" style="--c: 3 / span 10; --mt: 10vh">
-  <header class="bar"><h2 id="t-p1" data-en="Photo All — 01 Integration: one chain, originals untouched">Photo All — 01 整合：一条链路，原片不动</h2></header>
-  <div class="body">
-    <figure class="fig">
-      <p class="hint" data-en="◂ swipe to see the whole diagram ▸">◂ 左右滑动看全图 ▸</p>
-      <div class="scroller">
-      <svg class="diagram" viewBox="0 0 900 196" width="900" height="196" role="img"
-           data-en-label="Originals on disk are only indexed into the catalog — never copied, never rewritten. Reviewing and grading produce a non-destructive recipe. Only at export does the app go back for the original pixels and render a 16-bit file."
-           aria-label="磁盘上的原片只被登记进图集，不复制也不改写；审阅和调色产生的只是一份非破坏的配方；只有在导出那一刻才回头读原始像素，按配方渲染成 16-bit 文件。">
-        <defs>
-          <marker id="p-ar" viewBox="0 0 8 8" refX="8" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto">
-            <path class="ah" d="M0 0h2v1h-2zM0 1h4v1h-4zM0 2h6v1h-6zM0 3h8v2h-8zM0 5h6v1h-6zM0 6h4v1h-4zM0 7h2v1h-2z"/>
-          </marker>
-          <marker id="p-ar-k" viewBox="0 0 8 8" refX="8" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto">
-            <path class="ah-k" d="M0 0h2v1h-2zM0 1h4v1h-4zM0 2h6v1h-6zM0 3h8v2h-8zM0 5h6v1h-6zM0 6h4v1h-4zM0 7h2v1h-2z"/>
-          </marker>
-        </defs>
-
-        <g class="node" style="--at:.73s"><rect x="2" y="14" width="146" height="60"/>
-          <text class="t" x="14" y="39" data-en="Originals">磁盘原片</text>
-          <text class="s" x="14" y="61" data-en="read-only">只读，不改写</text></g>
-        <g class="node" style="--at:2.6s"><rect x="189" y="14" width="146" height="60"/>
-          <text class="t" x="201" y="39" data-en="Catalog">图集</text>
-          <text class="s" x="201" y="61" data-en="paths only">只记路径，不复制</text></g>
-        <g class="node" style="--at:4.5s"><rect x="376" y="14" width="146" height="60"/>
-          <text class="t" x="388" y="39" data-en="Light table">观片台审阅</text>
-          <text class="s" x="388" y="61" data-en="lamp · strip · loupe">灯箱·胶卷·放大镜</text></g>
-        <g class="node is-key" style="--at:6.4s"><rect x="563" y="14" width="146" height="60"/>
-          <text class="t" x="575" y="39" data-en="Edit recipe">调色配方</text>
-          <text class="s" x="575" y="61" data-en="float32, undoable">float32 可撤销</text></g>
-        <g class="node" style="--at:8.3s"><rect x="750" y="14" width="146" height="60"/>
-          <text class="t" x="762" y="39" data-en="Export">导出渲染</text>
-          <text class="s" x="762" y="61">16-bit PNG · TIFF</text></g>
-
-        <g class="edge">
-          <path d="M148 44H187" marker-end="url(#p-ar)"/><text x="168" y="35" data-en="index">登记</text>
-          <path d="M335 44H374" marker-end="url(#p-ar)"/><text x="355" y="35" data-en="filter">筛选</text>
-          <path d="M522 44H561" marker-end="url(#p-ar)"/><text x="542" y="35" data-en="adjust">调整</text>
-          <path d="M709 44H748" marker-end="url(#p-ar)"/><text x="729" y="35" data-en="apply">按配方</text>
-        </g>
-
-        <g class="readonly">
-          <path d="M75 74V136Q75 152 91 152H807Q823 152 823 136V76" marker-end="url(#p-ar-k)"/>
-          <text x="449" y="180" text-anchor="middle" data-en="original pixels are read only at export · never written back">只在导出这一刻回头读原始像素 · 从不写回磁盘</text>
-          <rect class="pkt-ro" x="-4" y="-4" width="8" height="8"/>
-        </g>
-
-        <rect class="pkt pkt-p1" x="-4" y="-4" width="8" height="8"/>
-      </svg>
-      </div>
-      <figcaption data-en="Destroying a catalog only clears records; not one file on disk moves. Import, recognition, review, grading, RAW development and export all happen in the same window — nothing round-trips through another app.">销毁图集只是清掉记录，磁盘上的原文件一个不动。导入、识图、审阅、调色、RAW 显影、导出都在同一个窗口里，不用来回倒腾别的软件。</figcaption>
-    </figure>
-  </div>
-</section>
-
-<!-- ═══════ Photo All 02 沉浸 ═══════ -->
-<section class="win wide ov" id="photo-2" aria-labelledby="t-p2" style="--c: 1 / span 10; --mt: 10vh">
-  <header class="bar"><h2 id="t-p2" data-en="Photo All — 02 Immersion: a light table, not a file list">Photo All — 02 沉浸：它是观片台，不是文件列表</h2></header>
-  <div class="body">
-    <figure class="fig">
-      <p class="hint" data-en="◂ swipe to see the whole diagram ▸">◂ 左右滑动看全图 ▸</p>
-      <div class="scroller">
-      <svg class="diagram diagram-table" viewBox="0 0 900 280" width="900" height="280" role="img"
-           data-en-label="The review surface is a real light table: an adjustable backlight below, a film strip with sprocket holes you drag across it, and a glass loupe that magnifies only the frame beneath it while the rest of the table stays in view."
-           aria-label="审阅界面就是一张真观片台：下面是亮度可调的背光灯箱，上面压着带齿孔的胶卷，可以整条拖着看；一枚折射镜片只放大镜下那一格，镜外整张台面还在。">
-        <defs>
-          <linearGradient id="pa-lamp" x1="0" y1="0" x2="0" y2="1">
-            <stop class="lamp-a" offset="0"/><stop class="lamp-b" offset="1"/>
-          </linearGradient>
-          <!-- 画幅里画了能认出来的东西，放大镜底下才看得出“同一张，变大了” -->
-          <g id="pa-fr1">
-            <rect class="fr-a" width="130" height="64"/>
-            <rect class="fr-w" x="96" y="12" width="10" height="10"/>
-            <path class="fr-m" d="M0 46h12v-6h10v-6h10v-6h10v6h8v6h10v-10h10v-8h10v8h10v10h10v6h10v6h10v18H0z"/>
-          </g>
-          <g id="pa-fr2">
-            <rect class="fr-b" width="130" height="64"/>
-            <rect class="fr-w" x="20" y="10" width="10" height="10"/>
-            <path class="fr-d" d="M74 42h8v-6h6v-6h6v-6h6v6h6v6h6v6h8v6H74z"/>
-            <rect class="fr-m" y="42" width="130" height="22"/>
-          </g>
-          <g id="pa-fr3">
-            <rect class="fr-c" width="130" height="64"/>
-            <path class="fr-d" d="M16 54V28h14v26zM38 54V16h12v38zM58 54V32h16v22zM82 54V22h14v32zM104 54V36h12v18z"/>
-            <rect class="fr-m" y="54" width="130" height="10"/>
-          </g>
-          <pattern id="pa-holes" x="0" y="66" width="50" height="96" patternUnits="userSpaceOnUse">
-            <rect class="hole" x="4" y="4" width="14" height="8"/><rect class="hole" x="4" y="84" width="14" height="8"/>
-          </pattern>
-          <!-- 一整条胶卷只画一次：台面上和镜片里用的是同一份，所以永远对得上 -->
-          <g id="pa-strip">
-            <rect class="film" x="-460" y="66" width="1900" height="96"/>
-            <rect x="-460" y="66" width="1900" height="96" fill="url(#pa-holes)"/>
-            <use href="#pa-fr1" x="-440" y="82"/><use href="#pa-fr2" x="-290" y="82"/><use href="#pa-fr3" x="-140" y="82"/>
-            <use href="#pa-fr1" x="10"   y="82"/><use href="#pa-fr2" x="160"  y="82"/><use href="#pa-fr3" x="310"  y="82"/>
-            <use href="#pa-fr1" x="460"  y="82"/><use href="#pa-fr2" x="610"  y="82"/><use href="#pa-fr3" x="760"  y="82"/>
-            <use href="#pa-fr1" x="910"  y="82"/><use href="#pa-fr2" x="1060" y="82"/><use href="#pa-fr3" x="1210" y="82"/>
-            <use href="#pa-fr1" x="1360" y="82"/>
-          </g>
-          <clipPath id="pa-pane"><rect x="2" y="8" width="896" height="212"/></clipPath>
-          <clipPath id="pa-lens"><circle cx="450" cy="114" r="74"/></clipPath>
-        </defs>
-
-        <rect class="pane" x="2" y="8" width="896" height="212" fill="url(#pa-lamp)"/>
-        <g clip-path="url(#pa-pane)"><use class="strip-slide" href="#pa-strip"/></g>
-
-        <!-- 镜片里是同一条胶卷，以镜心为原点放大 1.9 倍，所以镜心那一点始终不动 -->
-        <g clip-path="url(#pa-lens)">
-          <rect x="370" y="34" width="160" height="160" fill="url(#pa-lamp)"/>
-          <g transform="translate(450 114) scale(1.9) translate(-450 -114)">
-            <use class="strip-slide" href="#pa-strip"/>
-          </g>
-          <rect class="glint" x="404" y="62" width="14" height="6"/><rect class="glint" x="398" y="70" width="6" height="10"/>
-        </g>
-        <circle class="lens-ring" cx="450" cy="114" r="74"/>
-        <rect class="pane-edge" x="2" y="8" width="896" height="212"/>
-
-        <g class="num">
-          <rect x="29" y="29" width="22" height="22"/><text x="40" y="45" text-anchor="middle">1</text>
-          <rect x="229" y="103" width="22" height="22"/><text x="240" y="119" text-anchor="middle">2</text>
-          <rect x="517" y="33" width="22" height="22"/><text x="528" y="49" text-anchor="middle">3</text>
-        </g>
-
-        <g class="legend">
-          <rect x="2" y="245" width="18" height="18"/><text class="n" x="11" y="258" text-anchor="middle">1</text>
-          <text x="30" y="258" data-en="Backlight, brightness you set">背光灯箱，亮度自己定</text>
-          <rect x="302" y="245" width="18" height="18"/><text class="n" x="311" y="258" text-anchor="middle">2</text>
-          <text x="330" y="258" data-en="Film base, drag the whole strip">片基与齿孔，整条拖着看</text>
-          <rect x="602" y="245" width="18" height="18"/><text class="n" x="611" y="258" text-anchor="middle">3</text>
-          <text x="630" y="258" data-en="Loupe, magnifies what is under it">折射镜片，只放大镜下那块</text>
-        </g>
-      </svg>
-      </div>
-      <figcaption data-en="Magnification and lens size are set separately, and the table outside the glass never disappears — you keep the context while checking grain. Film simulation sits on the same surface: 126 open LUTs, 17 creative looks and 16 Spektrafilm stocks, each previewed on the real frame rather than a swatch.">倍率和镜片大小分开调，镜外的台面不会消失 —— 看清颗粒的同时还知道这张在整条片里的位置。胶片模拟就在同一张台面上生效：126 款开放 LUT、17 款创意风格、16 款 Spektrafilm 色彩，预览直接打在真实画面上，不是色块。</figcaption>
-    </figure>
-  </div>
-</section>
-
-<!-- ═══════ Photo All 03 精度 ═══════ -->
-<section class="win wide" id="photo-3" aria-labelledby="t-p3" style="--c: 3 / span 10; --mt: 10vh">
-  <header class="bar"><h2 id="t-p3" data-en="Photo All — 03 Precision: the screen compromises, the file does not">Photo All — 03 精度：屏幕妥协，文件不妥协</h2></header>
-  <div class="body">
-    <figure class="fig">
-      <p class="hint" data-en="◂ swipe to see the whole diagram ▸">◂ 左右滑动看全图 ▸</p>
-      <div class="scroller">
-      <svg class="diagram" viewBox="0 0 900 236" width="900" height="236" role="img"
-           data-en-label="Every adjustment is computed in a float32 linear working space. The screen gets an 8-bit sRGB approximation refreshed every frame, purely to look at; the export path recomputes the same recipe at full precision into a 16-bit file, so what the monitor gives up never reaches the file."
-           aria-label="所有调整都在 float32 线性工作空间里算。屏幕每帧拿到的是降成 8-bit sRGB 的近似，只为了看；导出时同一份配方按原始精度重算成 16-bit 文件，所以显示器上让掉的精度不会进到文件里。">
-        <defs>
-          <marker id="q-ar" viewBox="0 0 8 8" refX="8" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto">
-            <path class="ah" d="M0 0h2v1h-2zM0 1h4v1h-4zM0 2h6v1h-6zM0 3h8v2h-8zM0 5h6v1h-6zM0 6h4v1h-4zM0 7h2v1h-2z"/>
-          </marker>
-        </defs>
-
-        <g class="node" style="--at:.4s"><rect x="2" y="86" width="150" height="64"/>
-          <text class="t" x="14" y="112" data-en="Source">原片</text>
-          <text class="s" x="14" y="134">14-bit RAW</text></g>
-
-        <g class="node is-key" style="--at:1.3s"><rect x="212" y="20" width="250" height="196"/>
-          <text class="t" x="228" y="56" data-en="float32 linear space">float32 线性工作空间</text>
-          <text class="s" x="228" y="82" data-en="curves · LUTs · color">曲线 · LUT · 色彩</text>
-          <text class="s" x="228" y="102" data-en="all stack in here">都叠在这里面</text>
-          <text class="s" x="228" y="196" data-en="the recipe lives here">配方就存在这一侧</text></g>
-
-        <g class="node is-live"><rect x="560" y="20" width="210" height="64"/>
-          <text class="t" x="572" y="46" data-en="Screen preview">屏幕预览</text>
-          <text class="s" x="572" y="68" data-en="down to 8-bit sRGB">降到 8-bit sRGB</text></g>
-        <g class="node" style="--at:7.7s"><rect x="560" y="152" width="210" height="64"/>
-          <text class="t" x="572" y="178" data-en="Export">导出</text>
-          <text class="s" x="572" y="200" data-en="recomputed at 16-bit">按配方重算 16-bit</text></g>
-
-        <!-- 屏幕和文件：两个出口各自落到哪里 -->
-        <g class="gadget">
-          <rect x="808" y="22" width="68" height="44"/><rect class="screen" x="814" y="28" width="56" height="32"/>
-          <rect x="836" y="66" width="12" height="6"/><rect x="826" y="72" width="32" height="4"/>
-          <text x="842" y="94" text-anchor="middle">8-bit</text>
-          <path d="M820 148h30l12 12v44h-42z"/><path class="screen" d="M826 154h22v10h8v34h-30z"/>
-          <text x="842" y="224" text-anchor="middle">16-bit</text>
-        </g>
-
-        <g class="edge">
-          <path d="M152 118H206" marker-end="url(#q-ar)"/><text x="179" y="109" data-en="decode">解码</text>
-          <path d="M462 118H490V52H558" marker-end="url(#q-ar)"/><text x="524" y="43" data-en="per frame">每一帧</text>
-          <path d="M462 118H490V184H558" marker-end="url(#q-ar)"/><text x="524" y="175" data-en="on export">导出时</text>
-          <path d="M770 52H804" marker-end="url(#q-ar)"/>
-          <path d="M770 184H816" marker-end="url(#q-ar)"/>
-        </g>
-
-        <rect class="pkt pkt-q1" x="-4" y="-4" width="8" height="8"/>
-        <rect class="pkt pkt-q2" x="-3" y="-3" width="6" height="6"/>
-        <rect class="pkt pkt-q3" x="-4" y="-4" width="8" height="8"/>
-      </svg>
-      </div>
-      <figcaption data-en="Nothing the preview does feeds back: it is a per-frame approximation for your eyes. The recipe stays float32 and undoable for as long as the catalog lives, so a grade made a month ago can be reopened and exported at full precision. RAW development goes through RawTherapee on the same path.">预览这条路不回写任何东西，它只是给眼睛看的逐帧近似。配方一直是 float32 且可撤销，只要图集还在，一个月前调的色也能原样打开、按原始精度重导。RAW 显影走的是同一条路，交给 RawTherapee 完成。</figcaption>
-    </figure>
-  </div>
-</section>
-
-<!-- ═══════ 关注方向 ═══════ -->
-<section class="win" id="focus" aria-labelledby="t-focus" style="--c: 1 / span 6; --mt: 16vh">
-  <header class="bar"><h2 id="t-focus" data-en="What I work on">关注方向</h2></header>
-  <div class="body">
-    <ul class="rows numbered">
-      <li><i>01</i><b data-en="AI applications">AI 应用</b><span data-en="Getting a model&#39;s understanding and generation into a concrete situation, not stopping at the API call.">让模型的理解与生成能力进入具体场景，而不是停在接口调用。</span></li>
-      <li><i>02</i><b data-en="Human-computer interaction">人机交互</b><span data-en="Wiring language, voice, picture and real actions into one another.">把语言、语音、画面和实际操作连起来。</span></li>
-      <li><i>03</i><b data-en="Shipping it">工程落地</b><span data-en="The whole chain, state handling, failure handling — and an installer you can hand to someone else.">完整链路、状态管理、异常处理，以及能交到别人手上的安装包。</span></li>
-    </ul>
   </div>
 </section>
 
 <!-- ═══════ 联系 ═══════ -->
-<section class="win ov" id="contact" aria-labelledby="t-contact" style="--c: 8 / span 5; --mt: calc(16vh + 96px)">
+<section class="win ov" id="contact" aria-labelledby="t-contact" style="--c: 8 / span 5; --mt: calc(14vh + 96px)">
   <header class="bar"><h2 id="t-contact" data-en="Contact">联系</h2></header>
   <div class="body">
     <p class="lead" data-en="Open to jobs, research and open source.">欢迎工作机会、科研交流与开源协作。</p>
@@ -425,6 +237,7 @@
 
 <footer class="foot">
   <span>© <span id="year"></span> NANATATA</span>
+  <span class="sdg">SOLI DEO GLORIA</span>
   <span data-en="Plain HTML / CSS / JS · three.js · Fusion Pixel Font (OFL)">原生 HTML / CSS / JS · three.js · Fusion Pixel 字体（OFL）</span>
 </footer>
 
