@@ -128,27 +128,20 @@
 <!-- ═══════ Photo All Studio：观片台 ═══════ -->
 <section class="win wide ov" id="photo-table" aria-labelledby="t-pt" style="--c: 3 / span 10; --mt: 12vh">
   <header class="bar"><h2 id="t-pt" data-en="The light table — see photos the way you look at film">观片台 — 像看胶卷一样，重新看见照片</h2><span class="tag">II</span></header>
-  <div class="body">
-    <ul class="cards">
-      <li><figure class="arch"><img src="assets/img/lt-table-free.webp" width="1500" height="908" loading="lazy" alt=""></figure>
-        <h3><kbd>G</kbd><span data-en="Lay them out freely">自由摆片</span></h3>
-        <p data-en="Drag, resize one by one, tile in one key. The table stays the way you left it.">拖动、逐张缩放、一键平铺。台面怎么摆，下次回来还是那样。</p></li>
-      <li><figure class="arch"><img src="assets/img/lt-loupe.webp" width="1500" height="908" loading="lazy" alt=""></figure>
-        <h3><kbd>V</kbd><span data-en="Pick up the loupe">拿起放大镜</span></h3>
-        <p data-en="Press V to open a refracting lens where the cursor is. The rest of the table stays in view.">V 键在鼠标位置开镜，倍率和镜片尺寸分开调，镜外还看得见整张台面。</p></li>
-      <li><figure class="arch"><img src="assets/img/lt-roll-1.webp" width="1500" height="908" loading="lazy" alt=""></figure>
-        <h3><kbd>C</kbd><span data-en="A continuous roll">连续胶卷</span></h3>
-        <p data-en="Frames join end to end and slide sideways. It can play itself and pauses when you touch it.">首尾相接，横向滑动。可以自动播放，手一碰就停。</p></li>
-      <li><figure class="arch"><img src="assets/img/lt-immersive.webp" width="1500" height="908" loading="lazy" alt=""></figure>
-        <h3><kbd>I</kbd><span data-en="Nothing but the photos">只剩照片</span></h3>
-        <p data-en="Tools appear only on Space or at the screen edge. Sprocket holes and borders can be turned off.">按空格或碰到屏幕边缘才唤出工具，片孔、边框装饰都能关。</p></li>
-      <li><figure class="arch"><img src="assets/img/lt-off-dark.webp" width="1500" height="908" loading="lazy" alt=""></figure>
-        <h3><kbd>L</kbd><span data-en="Lights off">关灯</span></h3>
-        <p data-en="With the lamp off the photos only let a little light through — beige, warm grey or charcoal underneath.">关灯后照片只透一点光，底色有米黄、暖灰、灰黑，也能自定义。</p></li>
-      <li><figure class="arch"><img src="assets/img/collection-shelf.webp" width="1800" height="1089" loading="lazy" alt=""></figure>
-        <h3><kbd>⌂</kbd><span data-en="The film archive">胶片收藏室</span></h3>
-        <p data-en="Albums become rolls of 36 frames on a 3D shelf. Pick one and it drops onto the desk and unrolls.">图集分卷收上三维胶卷架，每卷 36 帧。选一卷，暗盒落桌、胶片展开。</p></li>
-    </ul>
+  <div class="body lt" id="lt">
+    <div class="lt-stage" id="ltStage" tabindex="0" aria-label="可以上手的电子观片台：拖动照片，按 G E C V L I 切换" data-en-label="A hands-on light table: drag photos, press G E C V L I">
+      <div class="lt-loupe" id="ltLoupe" hidden><canvas width="240" height="240"></canvas><span id="ltZoom">2.5×</span></div>
+    </div>
+    <div class="lt-dock" id="ltDock" role="toolbar" aria-label="观片台操作，和软件快捷键一致" data-en-label="Light table controls, same shortcuts as the app">
+      <button type="button" data-key="g" class="is-on"><kbd>G</kbd><span data-en="Table">台面</span></button>
+      <button type="button" data-key="e"><kbd>E</kbd><span data-en="Single">单张</span></button>
+      <button type="button" data-key="c"><kbd>C</kbd><span data-en="Roll">胶卷</span></button>
+      <i></i>
+      <button type="button" data-key="v"><kbd>V</kbd><span data-en="Loupe">放大镜</span></button>
+      <button type="button" data-key="l"><kbd>L</kbd><span data-en="Backlight">背光</span></button>
+      <button type="button" data-key="i"><kbd>I</kbd><span data-en="Immersive">沉浸</span></button>
+    </div>
+    <p class="lt-hint" data-en="Shortcuts match the app. Drag a photo, then press V to pick up the loupe; scroll to change magnification. In the app, albums also go onto a 3D film shelf.">快捷键和软件里一样。拖动照片试试，再按 V 拿起放大镜，滚轮调倍率。软件里图集还能收上三维胶卷架。</p>
   </div>
 </section>
 

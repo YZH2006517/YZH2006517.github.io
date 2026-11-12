@@ -431,10 +431,7 @@ svg { display: block }
 
 .btn.ghost { background: var(--cell); color: var(--ink) }
 
-/* 六张图卡 */
-.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px 18px }
-.cards h3 { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 12px; font-weight: 400 }
-.cards p { margin-top: 4px; color: var(--mute) }
+
 kbd {
   display: inline-grid;
   place-items: center;
@@ -623,6 +620,77 @@ kbd {
 .lab-strength output { min-width: 3ch; text-align: right; font-variant-numeric: tabular-nums }
 .lab-note { color: var(--faint) }
 #lab.no-gl .lab-stage, #lab.no-gl .looks, #lab.no-gl .lab-strength { display: none }
+
+/* ── 观片台：灯箱台面、胶片格、放大镜、底下一排快捷键 ── */
+.lt > * + * { margin-top: 12px }
+.lt-stage {
+  position: relative;
+  height: clamp(340px, 58vh, 560px);
+  overflow: hidden;
+  touch-action: none;
+  outline: none;
+  border: 2px solid var(--gold);
+  background: radial-gradient(ellipse at 50% 38%, #fffdf4, #ece8dc 62%, #d9d4c5);
+  box-shadow: inset 0 0 60px rgba(255, 246, 214, .7);
+  transition: background .5s steps(5), box-shadow .5s steps(5);
+}
+.lt-stage:focus-visible { outline: 2px solid var(--red); outline-offset: 2px }
+.lt-stage.lights-off { background: radial-gradient(ellipse at 50% 40%, #2c2e35, #17181c 70%); box-shadow: inset 0 0 40px rgba(0, 0, 0, .6) }
+.lt-stage[data-mode="g"] { cursor: grab }
+.lt-frame {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0 3%;
+  background: #121212;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .28);
+  transition: transform .5s cubic-bezier(.2, .8, .2, 1), width .5s cubic-bezier(.2, .8, .2, 1), height .5s cubic-bezier(.2, .8, .2, 1), opacity .35s, filter .5s;
+  will-change: transform;
+}
+/* 上下两条齿孔带 */
+.lt-frame::before, .lt-frame::after {
+  content: "";
+  position: absolute;
+  left: 3%;
+  right: 3%;
+  height: 12%;
+  background: repeating-linear-gradient(90deg, transparent 0 4px, #efe9d6 4px 10px, transparent 10px 15px) 0 50% / 15px 40% repeat-x;
+}
+.lt-frame::before { top: 0 }
+.lt-frame::after { bottom: 0 }
+.lt-frame img { position: absolute; top: 12%; bottom: 12%; left: 3%; width: 94%; height: 76%; object-fit: cover; pointer-events: none }
+.lt-frame.is-held { transition: none; cursor: grabbing; outline: 2px solid var(--gold-hi); box-shadow: 0 16px 30px rgba(0, 0, 0, .35) }
+.lt-stage[data-mode="c"] .lt-frame { transition: none; box-shadow: none }
+.lt-stage.lights-off .lt-frame { filter: brightness(.42) }
+
+.lt-loupe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 0 4px var(--gold-deep), 0 0 0 6px var(--gold-hi), 0 18px 40px rgba(0, 0, 0, .35), inset 0 0 30px rgba(255, 255, 255, .35);
+}
+.lt-loupe[hidden] { display: none }
+.lt-loupe canvas { width: 100%; height: 100%; border-radius: 50% }
+.lt-loupe span { position: absolute; bottom: -26px; left: 50%; transform: translateX(-50%); padding: 0 6px; background: var(--glass); border: 2px solid var(--gold) }
+
+.lt-dock { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px }
+.lt-dock i { width: 2px; height: 24px; margin: 0 4px; background: var(--gold) }
+.lt-dock button { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px 4px 4px; border: 2px solid var(--sep); background: var(--cell) }
+.lt-dock button:hover { border-color: var(--edge) }
+.lt-dock button.is-on { border-color: var(--gold); background: var(--cell-hi); box-shadow: 3px 3px 0 var(--shadow) }
+.lt-hint { text-align: center; color: var(--mute) }
+
+/* 沉浸：台面铺满整屏，按 I 或 Esc 退出 */
+.lt.is-immersive { position: fixed; inset: 0; z-index: 60; margin: 0; padding: 16px; background: var(--glass); display: grid; grid-template-rows: 1fr auto; gap: 12px }
+.lt.is-immersive .lt-stage { height: auto }
+.lt.is-immersive .lt-hint { display: none }
+/* 窗口的 backdrop-filter 会把 fixed 困在窗口里，沉浸时先关掉 */
+.win:has(.lt.is-immersive) { -webkit-backdrop-filter: none; backdrop-filter: none; z-index: 60 }
 
 /* ───────── §8 响应式与动效开关 ───────── */
 @media (max-width: 1100px) {

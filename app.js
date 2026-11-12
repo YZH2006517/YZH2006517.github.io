@@ -1,6 +1,6 @@
 /* ============================================================
    NANATATA 个人网站 —— 交互
-   §1 工具   §2 深浅色   §3 中英切换   §4 窗口展开   §5 暗房
+   §1 工具   §2 深浅色   §3 中英切换   §4 窗口展开   §5 暗房   §6 观片台
 
    背后的 3D 城市在 scene.js 里，这里只管页面本身。
    两边靠一个 themechange 事件对齐颜色。
@@ -173,3 +173,200 @@ addEventListener('DOMContentLoaded', async () => {
   wipe(0.5);
   addEventListener('resize', () => gl.render());
 });
+
+/* ───────── §6 观片台 ─────────
+   照下载站那张观片台做的精简版：九格胶片（三张照片换不同裁切），
+   G 平铺 / E 单张 / C 连续胶卷 / V 放大镜 / L 背光 / I 沉浸，照片可以拖。
+   放大镜是一块小画布，按每格胶片在台面上的真实位置把原图放大重画，所以镜外的台面照旧。 */
+
+(() => {
+  const stage = $('#ltStage');
+  if (!stage) return;
+  const wrap = $('#lt');
+  const dock = $('#ltDock');
+  const loupe = $('#ltLoupe');
+  const lens = loupe.querySelector('canvas');
+  const lctx = lens.getContext('2d');
+  const calm = matchMedia('(prefers-reduced-motion: reduce)');
+
+  const SHOTS = [
+    ['lake', '50% 40%'], ['valley', '30% 50%'], ['mountain', '50% 30%'],
+    ['lake', '15% 60%'], ['valley', '80% 40%'], ['mountain', '50% 75%'],
+    ['valley', '55% 70%'], ['lake', '85% 35%'], ['mountain', '40% 50%'],
+  ];
+  const frames = SHOTS.map(([name, pos], i) => {
+    const el = document.createElement('div');
+    el.className = 'lt-frame';
+    const img = new Image();
+    img.src = `assets/img/${name}.webp`;
+    img.alt = '';
+    img.draggable = false;
+    img.style.objectPosition = pos;
+    el.append(img);
+    stage.append(el);
+    return { el, img, pos: pos.split(' ').map(parseFloat), x: 0, y: 0, w: 0, h: 0, z: i };
+  });
+
+  let mode = 'g', current = 0, zoom = 2.5, lensOn = false, lights = true, roll = 0, top = 20;
+
+  function place(f, x, y, w, h, opacity = 1) {
+    Object.assign(f, { x, y, w, h });
+    f.el.style.transform = `translate(${x}px, ${y}px)`;
+    f.el.style.width = `${w}px`;
+    f.el.style.height = `${h}px`;
+    f.el.style.opacity = opacity;
+  }
+
+  function layout() {
+    const W = stage.clientWidth, H = stage.clientHeight;
+    if (mode === 'g') {
+      const cols = W > 700 ? 5 : 3, gap = W > 700 ? 18 : 10;
+      const w = (W - gap * (cols + 1)) / cols, h = w * 0.74;
+      const rows = Math.ceil(frames.length / cols);
+      const y0 = Math.max(gap, (H - rows * h - (rows - 1) * gap) / 2);
+      frames.forEach((f, i) => place(f, gap + (i % cols) * (w + gap), y0 + Math.floor(i / cols) * (h + gap), w, h));
+    } else if (mode === 'e') {
+      const h = Math.min(H * 0.84, (W * 0.86) / 1.5), w = h * 1.5;
+      frames.forEach((f, i) => {
+        const d = i - current;
+        place(f, (W - w) / 2 + d * 40, (H - h) / 2 + Math.abs(d) * 6, w, h, d === 0 ? 1 : 0);
+        f.el.style.zIndex = d === 0 ? 50 : 1;
+      });
+    } else {
+      rollTo(roll);
+    }
+  }
+
+  // 连续胶卷：九格首尾相接，第 i 格的位置按偏移量取模，走出左边就接到最右边
+  function rollTo(offset) {
+    const W = stage.clientWidth, H = stage.clientHeight;
+    const h = Math.min(H * 0.62, 260), w = h * 1.5, span = w * frames.length;
+    frames.forEach((f, i) => {
+      const x = ((((i * w - offset) % span) + span) % span) - w;
+      place(f, x, (H - h) / 2, w, h, x < W + w ? 1 : 0);
+    });
+  }
+
+  function setMode(next) {
+    mode = next;
+    stage.dataset.mode = next;
+    frames.forEach((f) => (f.el.style.zIndex = f.z));
+    layout();
+    $$('button', dock).forEach((b) => {
+      const k = b.dataset.key;
+      b.classList.toggle('is-on', k === mode || (k === 'v' && lensOn) || (k === 'l' && !lights) || (k === 'i' && wrap.classList.contains('is-immersive')));
+    });
+  }
+
+  // ── 拖动：台面模式下照片可以随手摆，再按 G 一键平铺回去 ──
+  let drag = null;
+  stage.addEventListener('pointerdown', (e) => {
+    const el = e.target.closest('.lt-frame');
+    if (mode === 'e') { current = (current + 1) % frames.length; layout(); return; }
+    if (!el || mode !== 'g') return;
+    const f = frames.find((x) => x.el === el);
+    f.z = ++top;
+    el.style.zIndex = f.z;
+    el.classList.add('is-held');
+    stage.setPointerCapture(e.pointerId);
+    drag = { f, dx: e.clientX - f.x, dy: e.clientY - f.y };
+  });
+  stage.addEventListener('pointermove', (e) => {
+    const r = stage.getBoundingClientRect();
+    if (lensOn) moveLens(e.clientX - r.left, e.clientY - r.top);
+    if (!drag) return;
+    const { f } = drag;
+    place(f, e.clientX - drag.dx, e.clientY - drag.dy, f.w, f.h);
+  });
+  const drop = () => { if (drag) drag.f.el.classList.remove('is-held'); drag = null; };
+  stage.addEventListener('pointerup', drop);
+  stage.addEventListener('pointercancel', drop);
+
+  // ── 放大镜 ──
+  let lensAt = { x: 0, y: 0 };
+  function moveLens(x, y) {
+    lensAt = { x, y };
+    loupe.style.transform = `translate(${x - lens.width / 2}px, ${y - lens.height / 2}px)`;
+    drawLens();
+  }
+  function drawLens() {
+    const S = lens.width, c = S / 2;
+    lctx.fillStyle = lights ? '#f3efe2' : '#1b1c21';
+    lctx.fillRect(0, 0, S, S);
+    const sr = stage.getBoundingClientRect();
+    for (const f of [...frames].sort((a, b) => (+a.el.style.zIndex || 0) - (+b.el.style.zIndex || 0))) {
+      if (+f.el.style.opacity === 0) continue;
+      const r = f.el.getBoundingClientRect();
+      const X = (r.left - sr.left - lensAt.x) * zoom + c, Y = (r.top - sr.top - lensAt.y) * zoom + c;
+      const Wf = r.width * zoom, Hf = r.height * zoom;
+      if (X > S || Y > S || X + Wf < 0 || Y + Hf < 0) continue;
+      lctx.fillStyle = '#121212';
+      lctx.fillRect(X, Y, Wf, Hf);
+      lctx.fillStyle = '#efe9d6';                     // 齿孔
+      const band = Hf * 0.12, hole = 9 * zoom;
+      for (let hx = X + hole * 0.3; hx < X + Wf - hole * 0.5; hx += hole * 1.6) {
+        lctx.fillRect(hx, Y + band * 0.3, hole * 0.6, band * 0.4);
+        lctx.fillRect(hx, Y + Hf - band * 0.7, hole * 0.6, band * 0.4);
+      }
+      const ix = X + Wf * 0.03, iy = Y + band, iw = Wf * 0.94, ih = Hf - band * 2;
+      const im = f.img;
+      if (!im.naturalWidth) continue;
+      const k = Math.max(iw / im.naturalWidth, ih / im.naturalHeight);
+      const sw = iw / k, sh = ih / k;
+      const sx = (im.naturalWidth - sw) * f.pos[0] / 100, sy = (im.naturalHeight - sh) * f.pos[1] / 100;
+      if (!lights) lctx.filter = 'brightness(.42)';
+      lctx.drawImage(im, sx, sy, sw, sh, ix, iy, iw, ih);
+      lctx.filter = 'none';
+    }
+  }
+  stage.addEventListener('wheel', (e) => {
+    if (!lensOn) return;
+    e.preventDefault();
+    zoom = Math.min(5, Math.max(1.5, zoom - Math.sign(e.deltaY) * 0.25));
+    $('#ltZoom').textContent = `${zoom.toFixed(1)}×`;
+    drawLens();
+  }, { passive: false });
+
+  // ── 键位：和软件一致；只在观片台露在屏幕上时生效 ──
+  let visible = false;
+  new IntersectionObserver(([e]) => (visible = e.isIntersecting), { threshold: 0.3 }).observe(stage);
+
+  function press(key) {
+    if (key === 'g' || key === 'e' || key === 'c') return setMode(key);
+    if (key === 'v') {
+      lensOn = !lensOn;
+      loupe.hidden = !lensOn;
+      if (lensOn) moveLens(stage.clientWidth / 2, stage.clientHeight / 2);
+    }
+    if (key === 'l') { lights = !lights; stage.classList.toggle('lights-off', !lights); if (lensOn) drawLens(); }
+    if (key === 'i') { wrap.classList.toggle('is-immersive'); requestAnimationFrame(layout); }
+    setMode(mode);
+  }
+  $$('button', dock).forEach((b) => b.addEventListener('click', () => press(b.dataset.key)));
+  addEventListener('keydown', (e) => {
+    const t = e.target;
+    if (!visible || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (t instanceof Element && t.closest('input, textarea, select, [contenteditable]')) return;
+    const k = e.key.toLowerCase();
+    if ('gecvli'.includes(k) && k.length === 1) { e.preventDefault(); press(k); }
+    else if (mode === 'e' && (k === 'arrowright' || k === 'arrowleft')) {
+      current = (current + (k === 'arrowright' ? 1 : frames.length - 1)) % frames.length;
+      layout();
+    } else if (k === 'escape' && wrap.classList.contains('is-immersive')) press('i');
+  });
+
+  // ── 胶卷自己走；手一碰（指针进台面）就停 ──
+  let hover = false, last = performance.now();
+  stage.addEventListener('pointerenter', () => (hover = true));
+  stage.addEventListener('pointerleave', () => (hover = false));
+  (function spin(now) {
+    const dt = Math.min(0.05, (now - last) / 1000);
+    last = now;
+    if (mode === 'c' && !hover && !calm.matches) { roll += dt * 60; rollTo(roll); if (lensOn) drawLens(); }
+    requestAnimationFrame(spin);
+  })(last);
+
+  addEventListener('resize', layout);
+  frames[0].img.addEventListener('load', () => lensOn && drawLens());
+  setMode('g');
+})();
