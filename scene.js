@@ -1,6 +1,7 @@
 /* ============================================================
    NANATATA 个人网站 —— 背景里的那座城
-   一座直播塔（顶上的球往外发电波，身后一圈金色的玫瑰窗光环，弹幕条往塔上飞），
+   一座直播塔（顶上的球往外发电波，身后一扇彩色玻璃玫瑰窗，弹幕条往塔上飞），
+   后方一座双塔大教堂（立面的玫瑰窗和开场那扇是同一块画布），几道天光从云上落下，
    一条横过天空的胶卷和一枚放大镜（Photo All Studio），
    周围是同一种蓝的低多边形城市。滚动页面，镜头就沿一条路线在城里走。
 
@@ -407,6 +408,46 @@ const loupe = new THREE.Group();
   scene.add(loupe);
 }
 
+// —— 彩色玻璃：开场那扇玫瑰窗的画布直接拿来当贴图 ——
+const roseTex = window.roseCanvas ? new THREE.CanvasTexture(window.roseCanvas) : null;
+if (roseTex) {
+  roseTex.magFilter = THREE.NearestFilter;  // 保持像素硬边
+  roseTex.minFilter = THREE.NearestFilter;
+  roseTex.generateMipmaps = false;
+}
+const glassMat = roseTex ? new THREE.MeshBasicMaterial({ map: roseTex, transparent: true, fog: true }) : flat('gold');
+
+// 直播塔顶身后的那扇
+mesh(new THREE.CircleGeometry(9.4, 64), glassMat, TX, 59, TZ - 6.4);
+
+// —— 后方的双塔大教堂 ——
+{
+  const CX = -10, CZ = -104;
+  block(CX, CZ, 34, 30, 44);                                    // 中殿
+  block(CX, CZ + 22, 34, 6, 1.6, { y: 30, mat: ink });          // 立面顶上的山花带
+  mesh(new THREE.ConeGeometry(24, 14, 4).rotateY(Math.PI / 4).scale(1, 1, 0.5).translate(0, 7, 0), paper, CX, 30, CZ + 4);
+  for (const dx of [-15, 15]) {                                 // 双塔 + 尖顶 + 金十字
+    block(CX + dx, CZ + 20, 9, 60, 9);
+    mesh(pyramid(6.4, 22), ink, CX + dx, 60, CZ + 20);
+    block(CX + dx, CZ + 20, 0.8, 7, 0.8, { y: 82, mat: flat('gold') });
+    block(CX + dx, CZ + 20, 4, 0.8, 0.8, { y: 86, mat: flat('gold') });
+    for (const y of [14, 30, 44]) block(CX + dx, CZ + 24.6, 2.4, 6, 0.3, { y, mat: ink });  // 塔上的窄窗
+  }
+  mesh(new THREE.TorusGeometry(9.6, 0.9, 6, 48), ink, CX, 36, CZ + 22.4);           // 玫瑰窗外框
+  mesh(new THREE.CircleGeometry(9.2, 64), glassMat, CX, 36, CZ + 22.3);
+  block(CX, CZ + 22.2, 8, 14, 0.6, { mat: ink });                                   // 大门
+  mesh(pyramid(5.7, 5), ink, CX, 14, CZ + 22.2).scale.set(1, 1, 0.12);
+}
+
+// —— 天光：从云上落下的几束光锥 ——
+const beams = [[TX, TZ, 26], [-10, -84, 30], [-16, -50, 18]].map(([x, z, r], i) => {
+  const m = mesh(new THREE.ConeGeometry(r, 140, 32, 1, true).translate(0, -70, 0),
+    flat('gold', { transparent: true, opacity: 0.07, depthWrite: false, side: THREE.DoubleSide, blending: THREE.AdditiveBlending }),
+    x, 150, z);
+  m.userData.phase = i * 2.1; // 圆锥平移后尖在 y=0、口在 y=-140，放到 150 高就是尖朝天、口罩着地面
+  return m;
+});
+
 // —— 天上漂的线框多面体 ——
 const polyMat = lines('line', 0.95);
 const polys = [
@@ -510,6 +551,8 @@ function animate(time, dt) {
   });
   liveDot.visible = Math.floor(time * 1.6) % 2 === 0;
   halo.rotation.z = time * 0.05;
+  if (roseTex) roseTex.needsUpdate = true;
+  for (const b of beams) b.material.opacity = 0.05 + 0.035 * Math.sin(time * 0.4 + b.userData.phase);
 
   for (const c of chatData) {
     c.x += c.v * dt;
