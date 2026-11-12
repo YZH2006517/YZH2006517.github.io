@@ -65,7 +65,6 @@
 <section class="win" id="about" aria-labelledby="t-about" style="--c: 1 / span 5">
   <header class="bar"><h2 id="t-about" data-en="About">关于我</h2></header>
   <div class="body">
-    <p class="verse"><span class="la" lang="la">Vos estis lux mundi</span><span class="tr" data-en="Ye are the light of the world · Matthew 5:14">你们是世上的光 · 马太福音 5:14</span></p>
     <p class="who">NANATATA <span data-en="AI apps · HCI · shipping">AI 应用 · 人机交互 · 工程落地</span></p>
     <p class="lead" data-en="Turn ideas into things people can use.">把想法，做成能用的东西。</p>
     <p data-en="Photo All is where most of my care goes: a light table on Windows, a film camera on Android. Both are free, open source and keep your photos on your own device.">花心思最多的是 Photo All：Windows 上是一张电子观片台，Android 上是一台胶片相机。都免费开源，照片只留在你自己的设备上。</p>
@@ -110,7 +109,6 @@
   <div class="body feature">
     <figure class="arch"><img src="assets/img/lt-stage.webp" width="1500" height="908" loading="lazy" alt="Photo All Studio 的观片台：背光下摆着一组照片" data-en-label="The Photo All Studio light table with a set of photos laid out under the backlight"></figure>
     <div class="pitch">
-    <p class="verse"><span class="la" lang="la">Et lux in tenebris lucet</span><span class="tr" data-en="And the light shineth in darkness · John 1:5">光照在黑暗里 · 约翰福音 1:5</span></p>
       <p class="kicker" data-en="An electronic light table for Windows">Windows 上的电子观片台</p>
       <p class="big" data-en="Let your photos slowly glow.">让照片，慢慢发光。</p>
       <p data-en="A light table you can switch on, lay photos across and magnify — and a local workbench that goes from picking to grading to the final print.">一张可以开灯、摆片、放大细节的电子观片台，也是一套从选片到修图出片的本地工作台。</p>
@@ -131,7 +129,6 @@
 <section class="win wide ov" id="photo-table" aria-labelledby="t-pt" style="--c: 3 / span 10; --mt: 12vh">
   <header class="bar"><h2 id="t-pt" data-en="The light table — see photos the way you look at film">观片台 — 像看胶卷一样，重新看见照片</h2><span class="tag">II</span></header>
   <div class="body">
-    <p class="verse"><span class="la" lang="la">Videmus nunc per speculum</span><span class="tr" data-en="For now we see through a glass · 1 Corinthians 13:12">我们如今仿佛对着镜子观看 · 哥林多前书 13:12</span></p>
     <ul class="cards">
       <li><figure class="arch"><img src="assets/img/lt-table-free.webp" width="1500" height="908" loading="lazy" alt=""></figure>
         <h3><kbd>G</kbd><span data-en="Lay them out freely">自由摆片</span></h3>
@@ -155,11 +152,35 @@
   </div>
 </section>
 
+<!-- ═══════ 暗房：真实胶片 LUT，左右拖动对比（渲染器复用下载站的 gl.js） ═══════ -->
+<section class="win wide ov" id="lab" aria-labelledby="t-lab" style="--c: 1 / span 10; --mt: 12vh">
+  <header class="bar"><h2 id="t-lab" data-en="Darkroom — try a real film LUT">暗房 — 试一试真实的胶片 LUT</h2><span class="tag">✦</span></header>
+  <div class="body lab">
+    <div class="lab-stage">
+      <div class="lab-wrap" id="labWrap" aria-label="左右拖动对比原片和套用胶片后的效果" data-en-label="Drag left and right to compare the original with the film look">
+        <canvas id="labCanvas"></canvas>
+        <div class="wipe" id="wipe" aria-hidden="true"><i></i><b>⟷</b></div>
+        <span class="lab-tag a" data-en="Original">原片</span>
+        <span class="lab-tag b" id="labTag">Kodak Portra 400</span>
+      </div>
+      <p class="lab-photos" id="labPhotos">
+        <button type="button" class="is-on" data-src="assets/img/lake.webp"><img src="assets/img/lake.webp" alt="湖" data-en-label="Lake"></button>
+        <button type="button" data-src="assets/img/valley.webp"><img src="assets/img/valley.webp" alt="山谷" data-en-label="Valley"></button>
+        <span data-en="Drag across the photo to compare.">在照片上左右拖动，对比前后。</span>
+      </p>
+    </div>
+    <div class="lab-panel">
+      <div class="looks" id="looks" role="group" aria-label="胶片" data-en-label="Film looks"></div>
+      <label class="lab-strength"><span data-en="Strength">强度</span><input id="labStrength" type="range" min="0" max="100" value="90"><output id="labStrengthOut">90</output></label>
+      <p class="lab-note" data-en="The web uses 17³ LUTs on a screen preview; the app stacks up to 16 layers at 33³ float32.">网页里是 17³ 降采样 LUT 和屏幕预览；软件里最多叠 16 层，按 33³ float32 完整精度导出。</p>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════ Photo All Studio：调色、冲印、片边 ═══════ -->
 <section class="win wide" id="photo-color" aria-labelledby="t-pc" style="--c: 1 / span 10; --mt: 12vh">
   <header class="bar"><h2 id="t-pc" data-en="Grade · print · borders — give a set of photos one mood">调色 · 冲印 · 片边 — 让一组照片拥有同一种情绪</h2><span class="tag">III</span></header>
   <div class="body">
-    <p class="verse"><span class="la" lang="la">Ecce nova facio omnia</span><span class="tr" data-en="Behold, I make all things new · Revelation 21:5">看哪，我将一切都更新了 · 启示录 21:5</span></p>
     <ul class="nums">
       <li><b>126</b><span data-en="open LUTs">款开放 LUT</span></li>
       <li><b>17</b><span data-en="creative looks">款创意风格</span></li>
@@ -189,7 +210,6 @@
 <section class="win wide ov" id="android" aria-labelledby="t-and" style="--c: 3 / span 10; --mt: 12vh">
   <header class="bar"><h2 id="t-and" data-en="Photo All · Film Camera · Android">Photo All · 胶片相机 · Android</h2><span class="tag">IV</span></header>
   <div class="body">
-    <p class="verse"><span class="la" lang="la">Omnia tempus habent</span><span class="tr" data-en="To every thing there is a season · Ecclesiastes 3:1">凡事都有定期 · 传道书 3:1</span></p>
     <p class="kicker" data-en="A film camera in your phone">装在手机里的胶片相机</p>
     <p class="big" data-en="Press the shutter. The darkroom does the rest.">按下快门，剩下的交给暗房。</p>
     <p data-en="The viewfinder already shows the film. After the shot, the photo (RAW by default) is developed on the phone&#39;s GPU: exposed to film, developed, printed to paper — about three seconds from RAW to a finished frame.">取景时就能看到胶片效果。按下快门后，照片（默认 RAW）在手机 GPU 上冲洗：曝光到胶片、显影、再印放到相纸 —— 从 RAW 到成片约 3 秒。</p>
@@ -221,7 +241,6 @@
 <section class="win" id="streamer" aria-labelledby="t-streamer" style="--c: 1 / span 6; --mt: 14vh">
   <header class="bar"><h2 id="t-streamer" data-en="AI Virtual Streamer">AI 虚拟主播</h2><span class="tag">V</span></header>
   <div class="body">
-    <p class="verse"><span class="la" lang="la">In principio erat Verbum</span><span class="tr" data-en="In the beginning was the Word · John 1:1">太初有道 · 约翰福音 1:1</span></p>
     <p data-en="A Live2D host reads the Douyin live chat and talks back, dances to the music, and runs chat minigames. One exe, your own LLM API key.">一个 Live2D 主播看着抖音弹幕陪观众聊天，还能跟着音乐跳舞、主持弹幕小游戏。下载一个 exe 就能用，填自己的大模型 API Key。</p>
     <ul class="rows">
       <li><b data-en="Persona and model">人设与形象</b><span data-en="Swap personality, voice and scene in one click; bring your own Cubism 3 model.">性格、声音、场景一键换，可导入自己的 Cubism 3 模型。</span></li>
@@ -238,7 +257,6 @@
 <section class="win ov" id="contact" aria-labelledby="t-contact" style="--c: 8 / span 5; --mt: calc(14vh + 96px)">
   <header class="bar"><h2 id="t-contact" data-en="Contact">联系</h2></header>
   <div class="body">
-    <p class="verse"><span class="la" lang="la">Pulsate et aperietur vobis</span><span class="tr" data-en="Knock, and it shall be opened unto you · Matthew 7:7">叩门，就给你们开门 · 马太福音 7:7</span></p>
     <p class="lead" data-en="Open to jobs, research and open source.">欢迎工作机会、科研交流与开源协作。</p>
     <ul class="list plain">
       <li><a class="row" href="mailto:zhenhao897@gmail.com"><span class="row-main"><b>zhenhao897@gmail.com</b></span><span class="meta" data-en="email">邮件</span></a></li>
@@ -257,6 +275,7 @@
 
 <script src="app.js"></script>
 <script src="glory.js"></script>
+<script src="gl.js"></script>
 <script type="module" src="scene.js"></script>
 </body>
 </html>

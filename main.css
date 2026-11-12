@@ -541,11 +541,6 @@ kbd {
 .frame .c3 { bottom: 6px; left: 6px; transform: scaleY(-1) }
 .frame .c4 { bottom: 6px; right: 6px; transform: scale(-1) }
 
-/* ── 经文题铭：拉丁文用像素哥特体，后面一行译文和出处 ── */
-.verse { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; padding-bottom: 8px; border-bottom: 1px dashed var(--gold) }
-.verse .la { font-family: "Jacquarda Bastarda 9", var(--display); font-size: 27px; line-height: 30px; color: var(--gold) }
-.verse .tr { color: var(--mute) }
-
 /* ── 烫金首字：每段大字的第一个字装进一格金框，底下压菱格暗纹 ── */
 .big::first-letter {
   float: left;
@@ -577,6 +572,58 @@ kbd {
   filter: drop-shadow(0 0 4px var(--halo));
 }
 
+/* ── 暗房 ── */
+.lab { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 20px; align-items: start }
+.lab > * + * { margin-top: 0 }
+.lab-wrap {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  cursor: ew-resize;
+  touch-action: none;
+  border: 2px solid var(--gold);
+  outline: 2px solid var(--cell);
+  outline-offset: -6px;
+  background: var(--film);
+}
+#labCanvas { display: block; width: 100%; height: 100% }
+.wipe { position: absolute; top: 0; bottom: 0; left: 50%; width: 0; pointer-events: none }
+.wipe i { position: absolute; inset: 0 -1px; background: var(--gold-hi); box-shadow: 0 0 10px var(--halo) }
+.wipe b {
+  position: absolute;
+  top: 50%;
+  left: -18px;
+  width: 36px;
+  height: 36px;
+  margin-top: -18px;
+  display: grid;
+  place-items: center;
+  font-weight: 400;
+  color: var(--ink);
+  background: var(--cell);
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+}
+.lab-tag { position: absolute; top: 10px; padding: 1px 8px; background: var(--glass); border: 2px solid var(--gold); pointer-events: none }
+.lab-tag.a { left: 10px }
+.lab-tag.b { right: 10px }
+.lab-photos { display: flex; align-items: center; gap: 8px; margin-top: 10px; color: var(--mute) }
+.lab-photos button { padding: 0; border: 2px solid var(--sep) }
+.lab-photos button.is-on { border-color: var(--gold) }
+.lab-photos img { display: block; width: 64px; height: 42px; object-fit: cover }
+.lab-panel > * + * { margin-top: 12px }
+.looks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px }
+.look { display: grid; gap: 2px; padding: 6px 8px; text-align: left; border: 2px solid var(--sep); background: var(--cell) }
+.look b { font-weight: 400 }
+.look small { color: var(--mute) }
+.look:hover { border-color: var(--edge) }
+.look.is-on { border-color: var(--gold); background: var(--cell-hi); box-shadow: 3px 3px 0 var(--shadow) }
+.lab-strength { display: flex; align-items: center; gap: 10px }
+.lab-strength input { flex: 1; accent-color: var(--gold) }
+.lab-strength output { min-width: 3ch; text-align: right; font-variant-numeric: tabular-nums }
+.lab-note { color: var(--faint) }
+#lab.no-gl .lab-stage, #lab.no-gl .looks, #lab.no-gl .lab-strength { display: none }
+
 /* ───────── §8 响应式与动效开关 ───────── */
 @media (max-width: 1100px) {
   .win.wide { grid-column: 1 / -1 }
@@ -596,7 +643,7 @@ kbd {
   .sanctum::after { inset: -48px }
   .big::first-letter { font-size: 48px; line-height: 48px }
   .big { min-height: 72px }
-  .feature, .split { grid-template-columns: minmax(0, 1fr) }
+  .feature, .split, .lab { grid-template-columns: minmax(0, 1fr) }
   .cards, .hooks, .stations { grid-template-columns: minmax(0, 1fr) }
   .nums { grid-template-columns: repeat(2, minmax(0, 1fr)) }
   .stations li + li::before { display: none }
