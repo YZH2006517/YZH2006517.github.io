@@ -604,10 +604,12 @@ kbd {
 .lab-tag { position: absolute; top: 10px; padding: 1px 8px; background: var(--glass); border: 2px solid var(--gold); pointer-events: none }
 .lab-tag.a { left: 10px }
 .lab-tag.b { right: 10px }
-.lab-photos { display: flex; align-items: center; gap: 8px; margin-top: 10px; color: var(--mute) }
+.lab-photos { display: flex; gap: 6px; margin-top: 10px; overflow-x: auto; padding-bottom: 4px }
+.lab-hint { margin-top: 6px; color: var(--mute) }
 .lab-photos button { padding: 0; border: 2px solid var(--sep) }
 .lab-photos button.is-on { border-color: var(--gold) }
-.lab-photos img { display: block; width: 64px; height: 42px; object-fit: cover }
+.lab-photos button { flex: none }
+.lab-photos img { display: block; width: 72px; height: 48px; object-fit: cover }
 .lab-panel > * + * { margin-top: 12px }
 .looks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px }
 .look { display: grid; gap: 2px; padding: 6px 8px; text-align: left; border: 2px solid var(--sep); background: var(--cell) }
@@ -645,7 +647,6 @@ kbd {
   background: #121212;
   box-shadow: 0 6px 16px rgba(0, 0, 0, .28);
   transition: transform .5s cubic-bezier(.2, .8, .2, 1), width .5s cubic-bezier(.2, .8, .2, 1), height .5s cubic-bezier(.2, .8, .2, 1), opacity .35s, filter .5s;
-  will-change: transform;
 }
 /* 上下两条齿孔带 */
 .lt-frame::before, .lt-frame::after {

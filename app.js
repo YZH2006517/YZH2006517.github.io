@@ -167,7 +167,7 @@ addEventListener('DOMContentLoaded', async () => {
     gl.render();
   }));
 
-  gl.setImage(await load('assets/img/lake.webp'));
+  gl.setImage(await load('assets/img/ansgar-lake.webp'));
   mark();
   await apply();
   wipe(0.5);
@@ -175,7 +175,7 @@ addEventListener('DOMContentLoaded', async () => {
 });
 
 /* ───────── §6 观片台 ─────────
-   照下载站那张观片台做的精简版：九格胶片（三张照片换不同裁切），
+   照下载站那张观片台做的精简版：十格胶片，十张不同的原图，
    G 平铺 / E 单张 / C 连续胶卷 / V 放大镜 / L 背光 / I 沉浸，照片可以拖。
    放大镜是一块小画布，按每格胶片在台面上的真实位置把原图放大重画，所以镜外的台面照旧。 */
 
@@ -187,19 +187,22 @@ addEventListener('DOMContentLoaded', async () => {
   const loupe = $('#ltLoupe');
   const lens = loupe.querySelector('canvas');
   const lctx = lens.getContext('2d');
+  // 画布按屏幕像素比开，高分屏上镜片里才不糊
+  const LENS = 240, dpr = Math.min(devicePixelRatio || 1, 3);
+  lens.width = lens.height = LENS * dpr;
+  lctx.scale(dpr, dpr);
+  lctx.imageSmoothingQuality = 'high';
   const calm = matchMedia('(prefers-reduced-motion: reduce)');
 
-  const SHOTS = [
-    ['lake', '50% 40%'], ['valley', '30% 50%'], ['mountain', '50% 30%'],
-    ['lake', '15% 60%'], ['valley', '80% 40%'], ['mountain', '50% 75%'],
-    ['valley', '55% 70%'], ['lake', '85% 35%'], ['mountain', '40% 50%'],
-  ];
+  // 十张不重样的原图（1600px），台面、单张和放大镜都读同一张，不靠裁切凑数
+  const SHOTS = [['ansgar-lake', '50% 50%'], ['boscaro-teal', '50% 50%'], ['hasler-horses', '50% 50%'], ['jacob-glacial', '50% 50%'], ['krcmarek-island', '50% 50%'], ['vradenburg-turquoise', '50% 50%'], ['zurcher-flowers', '50% 50%'], ['lake', '50% 50%'], ['valley', '50% 50%'], ['mountain', '50% 50%']];
   const frames = SHOTS.map(([name, pos], i) => {
     const el = document.createElement('div');
     el.className = 'lt-frame';
     const img = new Image();
     img.src = `assets/img/${name}.webp`;
     img.alt = '';
+    img.decoding = 'async';
     img.draggable = false;
     img.style.objectPosition = pos;
     el.append(img);
@@ -210,6 +213,8 @@ addEventListener('DOMContentLoaded', async () => {
   let mode = 'g', current = 0, zoom = 2.5, lensOn = false, lights = true, roll = 0, top = 20;
 
   function place(f, x, y, w, h, opacity = 1) {
+    // 位置和尺寸取整：小数像素会让合成层把照片画糊
+    x = Math.round(x); y = Math.round(y); w = Math.round(w); h = Math.round(h);
     Object.assign(f, { x, y, w, h });
     f.el.style.transform = `translate(${x}px, ${y}px)`;
     f.el.style.width = `${w}px`;
@@ -220,7 +225,7 @@ addEventListener('DOMContentLoaded', async () => {
   function layout() {
     const W = stage.clientWidth, H = stage.clientHeight;
     if (mode === 'g') {
-      const cols = W > 700 ? 5 : 3, gap = W > 700 ? 18 : 10;
+      const cols = W > 700 ? 5 : W > 420 ? 4 : 2, gap = W > 700 ? 18 : 10;
       const w = (W - gap * (cols + 1)) / cols, h = w * 0.74;
       const rows = Math.ceil(frames.length / cols);
       const y0 = Math.max(gap, (H - rows * h - (rows - 1) * gap) / 2);
@@ -286,11 +291,12 @@ addEventListener('DOMContentLoaded', async () => {
   let lensAt = { x: 0, y: 0 };
   function moveLens(x, y) {
     lensAt = { x, y };
-    loupe.style.transform = `translate(${x - lens.width / 2}px, ${y - lens.height / 2}px)`;
+    loupe.style.transform = `translate(${Math.round(x - LENS / 2)}px, ${Math.round(y - LENS / 2)}px)`;
     drawLens();
   }
   function drawLens() {
-    const S = lens.width, c = S / 2;
+    const S = LENS, c = S / 2;
+    lctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     lctx.fillStyle = lights ? '#f3efe2' : '#1b1c21';
     lctx.fillRect(0, 0, S, S);
     const sr = stage.getBoundingClientRect();
