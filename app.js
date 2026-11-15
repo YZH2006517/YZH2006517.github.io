@@ -108,7 +108,8 @@ if ('IntersectionObserver' in window) {
 }
 
 /* ───────── §5 暗房 ─────────
-   渲染器是下载站的 PhotoGL（gl.js，WebGL2 + 真实 3D LUT），这里只接按钮、滑杆和对比线。
+   渲染器是下载站的 PhotoGL（gl.js，WebGL2 + 真实 3D LUT），LUT 换成了 Photo All 工程里的完整 33³ 表。
+   这里只接按钮、滑杆和对比线。
    浏览器不支持 WebGL2 时整扇窗退成一句说明。 */
 
 // gl.js 排在本文件后面加载，等页尾脚本都跑完再接

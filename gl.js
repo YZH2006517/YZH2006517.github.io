@@ -2,7 +2,7 @@
 (function () {
   "use strict";
 
-  const LUT_SIZE = 17;
+  const LUT_SIZE = 33; // 个人网站用 Photo All 工程里的完整 33³ 表，不再降采样
 
   const VERTEX = `#version 300 es
   out vec2 vUv;
