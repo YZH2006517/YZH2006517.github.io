@@ -693,6 +693,19 @@ kbd {
 /* 窗口的 backdrop-filter 会把 fixed 困在窗口里，沉浸时先关掉 */
 .win:has(.lt.is-immersive) { -webkit-backdrop-filter: none; backdrop-filter: none; z-index: 60 }
 
+/* ── 项目名：每扇项目窗最上面一行大字，一眼看出是哪个项目 ── */
+.pname {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  padding: 16px 14px 12px;
+  border-bottom: 2px solid var(--sep);
+  background: linear-gradient(var(--cell-hi), transparent);
+}
+.pname b { font-size: 48px; font-weight: 400; line-height: 52px; color: var(--ink); text-shadow: 3px 3px 0 var(--sep) }
+.pname span { padding: 0 8px; border: 2px solid var(--gold); color: var(--gold); background: var(--cell) }
+
 /* ───────── §8 响应式与动效开关 ───────── */
 @media (max-width: 1100px) {
   .win.wide { grid-column: 1 / -1 }
@@ -706,6 +719,7 @@ kbd {
   .win.ov { box-shadow: 6px 6px 0 var(--shadow) }
   .hero { padding: 24px 16px }
   .title { font-size: 48px; line-height: 48px }
+  .pname b { font-size: 36px; line-height: 40px }
   .frame { display: none }
   .prefs { top: 12px; right: 12px }
   .sanctum { width: min(76vw, 52vh) }
